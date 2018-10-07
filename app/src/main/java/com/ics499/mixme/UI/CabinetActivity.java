@@ -17,6 +17,7 @@ public class CabinetActivity extends AppCompatActivity implements LogToggle, Vie
     TextView greeting;
     Button logBtn;
     String userName;
+    Button searchDrinksBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,16 +43,27 @@ public class CabinetActivity extends AppCompatActivity implements LogToggle, Vie
         logBtn.setText("Log Out");
         logBtn.setOnClickListener(this);
 
+        searchDrinksBtn = (Button) findViewById(R.id.searchNVBtn);
+        searchDrinksBtn.setOnClickListener(this);
+
 
     }
 
     @Override
     public void onClick(View v) {
 
+        Intent intent = new Intent();
+
         switch (v.getId()) {
 
             case R.id.logBtn:
                 logToggle(userName);
+                break;
+
+            case R.id.searchNVBtn:
+                intent.setClassName("com.ics499.mixme",
+                        "com.ics499.mixme.UI.SearchActivity");
+                startActivity(intent);
                 break;
         }
     }
