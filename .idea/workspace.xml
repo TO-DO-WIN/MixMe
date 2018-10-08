@@ -45,7 +45,7 @@
       <file leaf-file-name="SearchActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ics499/mixme/UI/SearchActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
+            <state relative-caret-position="-408">
               <caret line="63" selection-start-line="63" selection-end-line="63" />
             </state>
           </provider>
@@ -54,7 +54,7 @@
       <file leaf-file-name="IngredientRecyclerViewAdapter.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ics499/mixme/UI/IngredientRecyclerViewAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
+            <state relative-caret-position="-510">
               <caret line="27" column="51" selection-start-line="27" selection-start-column="51" selection-end-line="27" selection-end-column="51" />
               <folding>
                 <element signature="e#861#862#0" expanded="true" />
@@ -90,8 +90,8 @@
       <file leaf-file-name="Controller.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ics499/mixme/controller/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="20" column="27" selection-start-line="20" selection-start-column="27" selection-end-line="20" selection-end-column="27" />
+            <state relative-caret-position="408">
+              <caret line="75" lean-forward="true" selection-start-line="75" selection-end-line="75" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -99,7 +99,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="User.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="User.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ics499/mixme/model/User.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="459">
@@ -134,8 +134,8 @@
       <file leaf-file-name="Drink.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ics499/mixme/model/Drink.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
+            <state relative-caret-position="1105">
+              <caret line="65" column="32" selection-start-line="65" selection-start-column="32" selection-end-line="65" selection-end-column="32" />
               <folding>
                 <element signature="e#611#612#0" expanded="true" />
                 <element signature="e#645#646#0" expanded="true" />
@@ -159,21 +159,28 @@
                 <element signature="e#1336#1337#0" expanded="true" />
                 <element signature="e#1389#1390#0" expanded="true" />
                 <element signature="e#1437#1438#0" expanded="true" />
+                <element signature="e#1582#1583#0" expanded="true" />
+                <element signature="e#1631#1632#0" expanded="true" />
+                <element signature="e#1675#1676#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Catalog.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Catalog.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ics499/mixme/model/Catalog.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="25" column="23" selection-start-line="22" selection-start-column="8" selection-end-line="25" selection-end-column="23" />
+            <state relative-caret-position="714">
+              <caret line="96" column="35" lean-forward="true" selection-start-line="96" selection-start-column="35" selection-end-line="96" selection-end-column="35" />
               <folding>
                 <element signature="e#837#838#0" expanded="true" />
                 <element signature="e#874#875#0" expanded="true" />
                 <element signature="e#1061#1062#0" expanded="true" />
                 <element signature="e#1102#1103#0" expanded="true" />
+                <element signature="e#1360#1361#0" expanded="true" />
+                <element signature="e#1392#1393#0" expanded="true" />
+                <element signature="e#1452#1453#0" expanded="true" />
+                <element signature="e#1494#1495#0" expanded="true" />
                 <element signature="e#1289#1290#0" expanded="true" />
                 <element signature="e#1319#1320#0" expanded="true" />
                 <element signature="e#1375#1376#0" expanded="true" />
@@ -190,9 +197,10 @@
       <file leaf-file-name="Ingredient.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ics499/mixme/model/Ingredient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" column="29" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
+            <state relative-caret-position="680">
+              <caret line="40" column="24" selection-start-line="40" selection-start-column="24" selection-end-line="40" selection-end-column="24" />
               <folding>
+                <element signature="e#324#325#0" expanded="true" />
                 <element signature="e#351#352#0" expanded="true" />
                 <element signature="e#391#392#0" expanded="true" />
                 <element signature="e#423#424#0" expanded="true" />
@@ -204,6 +212,9 @@
                 <element signature="e#623#624#0" expanded="true" />
                 <element signature="e#663#664#0" expanded="true" />
                 <element signature="e#695#696#0" expanded="true" />
+                <element signature="e#792#793#0" expanded="true" />
+                <element signature="e#825#826#0" expanded="true" />
+                <element signature="e#853#854#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -2480,13 +2491,13 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/ingredient_row.xml" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/ics499/mixme/UI/IngredientRecyclerViewAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/ics499/mixme/model/Ingredient.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/ics499/mixme/UI/SearchActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/ics499/mixme/model/Bar.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/ics499/mixme/model/Catalog.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/ics499/mixme/model/User.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/ics499/mixme/controller/Controller.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/ics499/mixme/model/Drink.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/ics499/mixme/model/User.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/ics499/mixme/model/Ingredient.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/ics499/mixme/model/Catalog.java" />
       </list>
     </option>
   </component>
@@ -2764,16 +2775,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ics499/mixme/UI/IngredientRecyclerViewAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="27" column="51" selection-start-line="27" selection-start-column="51" selection-end-line="27" selection-end-column="51" />
-          <folding>
-            <element signature="e#861#862#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/support-compat-28.0.0.aar/78453cea4d42e9592867a9a89a0ca966/jars/classes.jar!/android/support/v4/content/ContextCompat.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -2788,95 +2789,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="409">
           <caret line="34" column="11" lean-forward="true" selection-start-line="34" selection-start-column="11" selection-end-line="34" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ics499/mixme/model/Ingredient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="29" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
-          <folding>
-            <element signature="e#351#352#0" expanded="true" />
-            <element signature="e#391#392#0" expanded="true" />
-            <element signature="e#423#424#0" expanded="true" />
-            <element signature="e#456#457#0" expanded="true" />
-            <element signature="e#485#486#0" expanded="true" />
-            <element signature="e#529#530#0" expanded="true" />
-            <element signature="e#565#566#0" expanded="true" />
-            <element signature="e#596#597#0" expanded="true" />
-            <element signature="e#623#624#0" expanded="true" />
-            <element signature="e#663#664#0" expanded="true" />
-            <element signature="e#695#696#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ics499/mixme/UI/SearchActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="63" selection-start-line="63" selection-end-line="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ics499/mixme/controller/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="20" column="27" selection-start-line="20" selection-start-column="27" selection-end-line="20" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ics499/mixme/model/Drink.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
-          <folding>
-            <element signature="e#611#612#0" expanded="true" />
-            <element signature="e#645#646#0" expanded="true" />
-            <element signature="e#680#681#0" expanded="true" />
-            <element signature="e#707#708#0" expanded="true" />
-            <element signature="e#747#748#0" expanded="true" />
-            <element signature="e#779#780#0" expanded="true" />
-            <element signature="e#819#820#0" expanded="true" />
-            <element signature="e#849#850#0" expanded="true" />
-            <element signature="e#901#902#0" expanded="true" />
-            <element signature="e#939#940#0" expanded="true" />
-            <element signature="e#976#977#0" expanded="true" />
-            <element signature="e#1009#1010#0" expanded="true" />
-            <element signature="e#1061#1062#0" expanded="true" />
-            <element signature="e#1105#1106#0" expanded="true" />
-            <element signature="e#1141#1142#0" expanded="true" />
-            <element signature="e#1173#1174#0" expanded="true" />
-            <element signature="e#1223#1224#0" expanded="true" />
-            <element signature="e#1265#1266#0" expanded="true" />
-            <element signature="e#1301#1302#0" expanded="true" />
-            <element signature="e#1336#1337#0" expanded="true" />
-            <element signature="e#1389#1390#0" expanded="true" />
-            <element signature="e#1437#1438#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ics499/mixme/model/Catalog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="23" selection-start-line="22" selection-start-column="8" selection-end-line="25" selection-end-column="23" />
-          <folding>
-            <element signature="e#837#838#0" expanded="true" />
-            <element signature="e#874#875#0" expanded="true" />
-            <element signature="e#1061#1062#0" expanded="true" />
-            <element signature="e#1102#1103#0" expanded="true" />
-            <element signature="e#1289#1290#0" expanded="true" />
-            <element signature="e#1319#1320#0" expanded="true" />
-            <element signature="e#1375#1376#0" expanded="true" />
-            <element signature="e#1413#1414#0" expanded="true" />
-            <element signature="e#1461#1462#0" expanded="true" />
-            <element signature="e#1495#1496#0" expanded="true" />
-            <element signature="e#1559#1560#0" expanded="true" />
-            <element signature="e#1605#1606#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2906,6 +2818,116 @@
             <element signature="e#1563#1564#0" expanded="true" />
             <element signature="e#1615#1616#0" expanded="true" />
             <element signature="e#1649#1650#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ics499/mixme/UI/IngredientRecyclerViewAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-510">
+          <caret line="27" column="51" selection-start-line="27" selection-start-column="51" selection-end-line="27" selection-end-column="51" />
+          <folding>
+            <element signature="e#861#862#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ics499/mixme/model/Ingredient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="680">
+          <caret line="40" column="24" selection-start-line="40" selection-start-column="24" selection-end-line="40" selection-end-column="24" />
+          <folding>
+            <element signature="e#324#325#0" expanded="true" />
+            <element signature="e#351#352#0" expanded="true" />
+            <element signature="e#391#392#0" expanded="true" />
+            <element signature="e#423#424#0" expanded="true" />
+            <element signature="e#456#457#0" expanded="true" />
+            <element signature="e#485#486#0" expanded="true" />
+            <element signature="e#529#530#0" expanded="true" />
+            <element signature="e#565#566#0" expanded="true" />
+            <element signature="e#596#597#0" expanded="true" />
+            <element signature="e#623#624#0" expanded="true" />
+            <element signature="e#663#664#0" expanded="true" />
+            <element signature="e#695#696#0" expanded="true" />
+            <element signature="e#792#793#0" expanded="true" />
+            <element signature="e#825#826#0" expanded="true" />
+            <element signature="e#853#854#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ics499/mixme/controller/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="75" lean-forward="true" selection-start-line="75" selection-end-line="75" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ics499/mixme/model/Drink.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1105">
+          <caret line="65" column="32" selection-start-line="65" selection-start-column="32" selection-end-line="65" selection-end-column="32" />
+          <folding>
+            <element signature="e#611#612#0" expanded="true" />
+            <element signature="e#645#646#0" expanded="true" />
+            <element signature="e#680#681#0" expanded="true" />
+            <element signature="e#707#708#0" expanded="true" />
+            <element signature="e#747#748#0" expanded="true" />
+            <element signature="e#779#780#0" expanded="true" />
+            <element signature="e#819#820#0" expanded="true" />
+            <element signature="e#849#850#0" expanded="true" />
+            <element signature="e#901#902#0" expanded="true" />
+            <element signature="e#939#940#0" expanded="true" />
+            <element signature="e#976#977#0" expanded="true" />
+            <element signature="e#1009#1010#0" expanded="true" />
+            <element signature="e#1061#1062#0" expanded="true" />
+            <element signature="e#1105#1106#0" expanded="true" />
+            <element signature="e#1141#1142#0" expanded="true" />
+            <element signature="e#1173#1174#0" expanded="true" />
+            <element signature="e#1223#1224#0" expanded="true" />
+            <element signature="e#1265#1266#0" expanded="true" />
+            <element signature="e#1301#1302#0" expanded="true" />
+            <element signature="e#1336#1337#0" expanded="true" />
+            <element signature="e#1389#1390#0" expanded="true" />
+            <element signature="e#1437#1438#0" expanded="true" />
+            <element signature="e#1582#1583#0" expanded="true" />
+            <element signature="e#1631#1632#0" expanded="true" />
+            <element signature="e#1675#1676#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ics499/mixme/UI/SearchActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-408">
+          <caret line="63" selection-start-line="63" selection-end-line="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ics499/mixme/model/Catalog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="714">
+          <caret line="96" column="35" lean-forward="true" selection-start-line="96" selection-start-column="35" selection-end-line="96" selection-end-column="35" />
+          <folding>
+            <element signature="e#837#838#0" expanded="true" />
+            <element signature="e#874#875#0" expanded="true" />
+            <element signature="e#1061#1062#0" expanded="true" />
+            <element signature="e#1102#1103#0" expanded="true" />
+            <element signature="e#1360#1361#0" expanded="true" />
+            <element signature="e#1392#1393#0" expanded="true" />
+            <element signature="e#1452#1453#0" expanded="true" />
+            <element signature="e#1494#1495#0" expanded="true" />
+            <element signature="e#1289#1290#0" expanded="true" />
+            <element signature="e#1319#1320#0" expanded="true" />
+            <element signature="e#1375#1376#0" expanded="true" />
+            <element signature="e#1413#1414#0" expanded="true" />
+            <element signature="e#1461#1462#0" expanded="true" />
+            <element signature="e#1495#1496#0" expanded="true" />
+            <element signature="e#1559#1560#0" expanded="true" />
+            <element signature="e#1605#1606#0" expanded="true" />
           </folding>
         </state>
       </provider>

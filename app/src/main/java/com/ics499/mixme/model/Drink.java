@@ -8,13 +8,15 @@ public class Drink {
     private String directions;
     private String glassType;
     private int percentMatch;
+    private int numIngreds;
 
-    public Drink(String name, Ingredient[] ingreds, String directions, String glassType, int percentMatch) {
+    public Drink(String name, Ingredient[] ingreds, String directions, String glassType, int percentMatch, int numIngreds) {
         this.name = name;
         this.ingreds = ingreds;
         this.directions = directions;
         this.glassType = glassType;
         this.percentMatch = percentMatch;
+        this.numIngreds = numIngreds;
     }
 
     public static int getMaxIngreds() {
@@ -59,5 +61,13 @@ public class Drink {
 
     public void setPercentMatch(int percentMatch) {
         this.percentMatch = percentMatch;
+    }
+
+    public int getNumIngreds() {
+        return numIngreds;
+    }
+
+    public void setNumIngreds(int numIngreds) {
+        this.numIngreds = numIngreds;
     }
 }

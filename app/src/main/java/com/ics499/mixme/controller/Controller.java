@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.util.SparseBooleanArray;
 
 import com.ics499.mixme.model.Catalog;
+import com.ics499.mixme.model.Ingredient;
 import com.ics499.mixme.model.User;
 
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ public class Controller {
     private Catalog catalog;
     private User user;
 
-    private Controller(){
+    private Controller() {
         Catalog.getInstance();
         User.getInstance();
     }
@@ -24,16 +25,16 @@ public class Controller {
     /**
      * Create a static method to get instance.
      */
-    public static Controller getInstance(){
-        if(controller == null){
+    public static Controller getInstance() {
+        if (controller == null) {
             controller = new Controller();
         }
         return controller;
     }
 
 
-    public ArrayList<String> getIngredientList(){
-
+    public ArrayList<String> getIngredientList() {
+        // to be replaced with catalog.getAllIngredints()
         ArrayList<String> ingredients = new ArrayList<>();
 
         // populate list------------------to be replaced with call to get actual list from db
@@ -55,18 +56,27 @@ public class Controller {
         ingredients.add("Beer");
 
 
-
         return ingredients;
     }
 
     public void searchDrinks(SparseBooleanArray sba,
-                             ArrayList<String> drinkNames, ArrayList<String> percentMatch){
+                             ArrayList<String> drinkNames, ArrayList<String> percentMatch) {
 
-            //Search each drink for matching ingredients
-            //add to each list if matching at least 66%
+        //Search each drink for matching ingredients
+        //add to each list if matching at least 66%
+        ArrayList<Ingredient> allIngredients = catalog.getAllIngredients();
+        ArrayList<Ingredient> usingIngredients = new ArrayList<>();
 
+        // turn sparse boolean into list of workable ingredients
+        for (int i = 0; i < allIngredients.size(); i++) {
+            if (sba.get(i) == true) {
+                usingIngredients.add(allIngredients.get(i));
+            }
+        }
 
+        catalog.setWorkingIngredients(usingIngredients);
 
+        catalog.searchDrinks(drinkNames, percentMatch);
 
     }
 }
