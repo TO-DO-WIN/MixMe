@@ -60,7 +60,7 @@ public class SearchActivity extends AppCompatActivity implements LogToggle,
         findDrinksBtn = (Button) findViewById(R.id.findDrinks);
         findDrinksBtn.setOnClickListener(this);
 
-        controller = new Controller();
+        controller = Controller.getInstance();
         ArrayList<String> ingredientList = controller.getIngredientList();
 
         RecyclerView rv = findViewById(R.id.rvIngredients);
@@ -91,6 +91,22 @@ public class SearchActivity extends AppCompatActivity implements LogToggle,
             case R.id.logBtn:
                 logToggle(userName);
                 break;
+
+            case R.id.findDrinks:
+
+                ArrayList<String> drinkNames = new ArrayList<>();
+                ArrayList<String> percentMatch = new ArrayList<>();
+
+                controller.searchDrinks(adapter.getItemStateArray(), drinkNames, percentMatch);
+
+                Intent intent = new Intent();
+                intent.putStringArrayListExtra("drinkNames",
+                        drinkNames);
+                intent.putStringArrayListExtra("percentMatch",
+                        percentMatch);
+                intent.setClassName("com.ics499.mixme",
+                        "com.ics499.mixme.UI.DrinksFound");
+                startActivity(intent);
         }
     }
 
