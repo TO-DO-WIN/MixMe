@@ -94,16 +94,17 @@ public class SearchActivity extends AppCompatActivity implements LogToggle,
 
             case R.id.findDrinks:
 
-                ArrayList<String> drinkNames = new ArrayList<>();
-                ArrayList<String> percentMatch = new ArrayList<>();
+                ArrayList<String> makableNames = new ArrayList<>();
+                ArrayList<String> nearMakableNames = new ArrayList<>();
+                ArrayList<String> nearMakableMatch = new ArrayList<>();
 
-                controller.searchDrinks(adapter.getItemStateArray(), drinkNames, percentMatch);
+                controller.searchDrinks(adapter.getItemStateArray(), makableNames,
+                        nearMakableNames, nearMakableMatch);
 
                 Intent intent = new Intent();
-                intent.putStringArrayListExtra("drinkNames",
-                        drinkNames);
-                intent.putStringArrayListExtra("percentMatch",
-                        percentMatch);
+                intent.putStringArrayListExtra("makableNames", makableNames);
+                intent.putStringArrayListExtra("nearMakableNames", nearMakableNames);
+                intent.putStringArrayListExtra("nearMakableMatch", nearMakableMatch);
                 intent.setClassName("com.ics499.mixme",
                         "com.ics499.mixme.UI.DrinksFound");
                 startActivity(intent);

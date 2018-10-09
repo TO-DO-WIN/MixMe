@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.util.SparseBooleanArray;
 
 import com.ics499.mixme.model.Catalog;
+import com.ics499.mixme.model.Drink;
 import com.ics499.mixme.model.Ingredient;
 import com.ics499.mixme.model.User;
 
@@ -59,24 +60,28 @@ public class Controller {
         return ingredients;
     }
 
-    public void searchDrinks(SparseBooleanArray sba,
-                             ArrayList<String> drinkNames, ArrayList<String> percentMatch) {
+    public void searchDrinks(SparseBooleanArray sba, ArrayList<String> makableNames,
+                             ArrayList<String> nearMakableNames, ArrayList<String> nearMakableMatch) {
 
         //Search each drink for matching ingredients
         //add to each list if matching at least 66%
         ArrayList<Ingredient> allIngredients = catalog.getAllIngredients();
-        ArrayList<Ingredient> usingIngredients = new ArrayList<>();
+        ArrayList<Integer> usingIngredientIDs = new ArrayList<>();
 
-        // turn sparse boolean into list of workable ingredients
+        // turn sparse boolean into sorted integer list of workable ingredients' ids
         for (int i = 0; i < allIngredients.size(); i++) {
             if (sba.get(i) == true) {
-                usingIngredients.add(allIngredients.get(i));
+                usingIngredientIDs.add(i);
             }
         }
 
-        catalog.setWorkingIngredients(usingIngredients);
+        catalog.setWorkingIngredientIDs(usingIngredientIDs);
 
-        catalog.searchDrinks(drinkNames, percentMatch);
+        catalog.searchDrinks();
+
+        makableNames = catalog.getMakableNames();
+        nearMakableNames = catalog.getNearMakableNames();
+        nearMakableMatch = catalog.getNearMakableMatch();
 
     }
 }

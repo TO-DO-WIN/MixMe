@@ -23,13 +23,14 @@
         </activity>
         <activity
             android:name=".UI.SearchActivity"
-            android:label="Search Drinks"/>
+            android:label="Search Drinks" />
         <activity
             android:name=".UI.LoginActivity"
             android:label="@string/title_activity_login" />
         <activity
             android:name=".UI.CabinetActivity"
             android:label="My Cabinet" />
+        <activity android:name=".UI.DrinksFound"></activity>
     </application>
 
 </manifest>

@@ -70,4 +70,13 @@ public class Drink {
     public void setNumIngreds(int numIngreds) {
         this.numIngreds = numIngreds;
     }
+
+    public Integer[] getIngredIDs() {
+        Integer[] ingredIDs = new Integer[MAX_INGREDS];
+
+        for (int i = 0; i < MAX_INGREDS && (ingreds[i] != null); i++)
+            ingredIDs[i] = ingreds[i].getId();
+
+        return ingredIDs;
+    }
 }

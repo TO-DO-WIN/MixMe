@@ -1,12 +1,15 @@
 package com.ics499.mixme.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class Catalog {
 
     private static final int MIN_PERCENT_MATCH = 66;
     private ArrayList<Ingredient> allIngredients;
-    private ArrayList<Ingredient> workingIngredients;
+    private ArrayList<Integer> workingIngredientIDs;
     private ArrayList<Drink> allDrinks;
     private ArrayList<Drink> makable;
     private ArrayList<Drink> nearMakable;
@@ -16,7 +19,7 @@ public class Catalog {
 
     private Catalog() {
         this.allIngredients = new ArrayList<>();
-        this.workingIngredients = new ArrayList<>();
+        this.workingIngredientIDs = new ArrayList<>();
         this.allDrinks = new ArrayList<>();
         this.makable = new ArrayList<>();
         this.nearMakable = new ArrayList<>();
@@ -39,12 +42,12 @@ public class Catalog {
         this.allIngredients = allIngredients;
     }
 
-    public ArrayList<Ingredient> getWorkingIngredients() {
-        return workingIngredients;
+    public ArrayList<Integer> getWorkingIngredientIDs() {
+        return workingIngredientIDs;
     }
 
-    public void setWorkingIngredients(ArrayList<Ingredient> workingIngredients) {
-        this.workingIngredients = workingIngredients;
+    public void setWorkingIngredientIDs(ArrayList<Integer> workingIngredients) {
+        this.workingIngredientIDs = workingIngredients;
     }
 
     public ArrayList<Drink> getAllDrinks() {
@@ -71,7 +74,7 @@ public class Catalog {
         this.nearMakable = nearMakable;
     }
 
-    public void searchDrinks(ArrayList<String> drinkNames, ArrayList<String> percentMatch) {
+    public void searchDrinks() {
 
         for(Drink d: allDrinks){
             int presentIngreds = 0;
@@ -79,12 +82,16 @@ public class Catalog {
             int maxUnavailableIngreds = ((100 - MIN_PERCENT_MATCH) * totalIngreds) / 100;
             int unavailableIngreds = 0;
 
-            Ingredient[] ingreds = d.getIngreds();
+            Integer[] ingredIDs = d.getIngredIDs();
             // for each drink ingredient, while not exceeding maximum number of unavailable
             for(int i = 0; i < totalIngreds && unavailableIngreds <= maxUnavailableIngreds; i++){
                 // binary search for drink ingredient among ordered workingIngredients
                 // if found increment presentIngreds
                 // if not found increment unavailableIngreds
+                if (Collections.binarySearch(workingIngredientIDs, ingredIDs[i]) < 0){
+                    unavailableIngreds++;
+                } else {
+                    presentIngreds++;}
             }
             int percent = (int)((presentIngreds * 100.0f) / totalIngreds);
 
@@ -98,5 +105,31 @@ public class Catalog {
             }
         }
 
+    }
+    public ArrayList<String> getMakableNames(){
+        ArrayList<String> makableNames = new ArrayList<>();
+
+        for (Drink d: makable){
+            makableNames.add(d.getName());
+        }
+        return makableNames;
+    }
+
+    public ArrayList<String> getNearMakableNames(){
+        ArrayList<String> nearMakableNames = new ArrayList<>();
+
+        for (Drink d: nearMakable){
+            nearMakableNames.add(d.getName());
+        }
+        return nearMakableNames;
+    }
+
+    public ArrayList<String> getNearMakableMatch(){
+        ArrayList<String> nearMakableMatch = new ArrayList<>();
+
+        for (Drink d: nearMakable){
+            nearMakableMatch.add(Integer.toString(d.getPercentMatch()));
+        }
+        return nearMakableMatch;
     }
 }
