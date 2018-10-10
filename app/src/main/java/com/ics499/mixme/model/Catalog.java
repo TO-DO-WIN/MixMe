@@ -171,10 +171,12 @@ public class Catalog {
 
         Ingredient[] ingredients = new Ingredient[ingredientNames.size()];
         for (int i = 0; i < ingredients.length; i++){
-            ingredients[i].setName(ingredientNames.get(i));
-            ingredients[i].setVolume(Double.parseDouble(ingredientVolumes.get(i)));
-            ingredients[i].setUnit(ingredientUnits.get(i));
-            ingredients[i].setId(ingredientIDs.get(i));
+            ingredients[i] = new Ingredient(ingredientNames.get(i), Double.parseDouble(ingredientVolumes.get(i)),
+                    ingredientUnits.get(i), ingredientIDs.get(i));
+//            ingredients[i].setName(ingredientNames.get(i));
+//            ingredients[i].setVolume(Double.parseDouble(ingredientVolumes.get(i)));
+//            ingredients[i].setUnit(ingredientUnits.get(i));
+//            ingredients[i].setId(ingredientIDs.get(i));
         }
 
         Drink d = new Drink(drinkName, ingredients, directions, glassType, 0, ingredients.length);
