@@ -30,7 +30,12 @@
         <activity
             android:name=".UI.CabinetActivity"
             android:label="My Cabinet" />
-        <activity android:name=".UI.DrinksFoundActivity"></activity>
+        <activity
+            android:name=".UI.DrinksFoundActivity"
+            android:label="Drinks Found"/>
+        <activity
+            android:name=".UI.CreateDrinkActivity"
+            android:label="Create A Drink" />
     </application>
 
 </manifest>

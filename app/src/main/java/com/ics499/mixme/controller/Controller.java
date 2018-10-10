@@ -3,12 +3,14 @@ package com.ics499.mixme.controller;
 import android.content.Intent;
 import android.util.Log;
 import android.util.SparseBooleanArray;
+import android.widget.EditText;
 
 import com.ics499.mixme.model.Catalog;
 import com.ics499.mixme.model.Drink;
 import com.ics499.mixme.model.Ingredient;
 import com.ics499.mixme.model.User;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import static android.support.v4.content.ContextCompat.startActivity;
@@ -100,4 +102,16 @@ public class Controller {
         nearMakableMatch.addAll(catalog.getNearMakableMatch());
 
     }
+
+    public void createDrink(String drinkName, ArrayList<String> ingredientNames, ArrayList<String> ingredientVolumes,
+                            ArrayList<String> ingredientUnits, ArrayList<Integer> ingredientIDs,
+                            String directions, String glassType){
+
+        // pass along data to catalog, except convert sparseBooleanArray to ArrayList of Integers
+        // not using sba yet
+        catalog.createDrink(drinkName, ingredientNames, ingredientVolumes, ingredientUnits, ingredientIDs, directions, glassType);
+
+    }
+
+
 }

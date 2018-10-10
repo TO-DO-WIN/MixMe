@@ -17,7 +17,7 @@ public class CabinetActivity extends AppCompatActivity implements LogToggle, Vie
     TextView greeting;
     Button logBtn;
     String userName;
-    Button searchDrinksBtn;
+    Button searchDrinksBtn, createDrinkBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +46,8 @@ public class CabinetActivity extends AppCompatActivity implements LogToggle, Vie
         searchDrinksBtn = (Button) findViewById(R.id.searchNVBtn);
         searchDrinksBtn.setOnClickListener(this);
 
-
+        createDrinkBtn = (Button) findViewById(R.id.createNVBtn);
+        createDrinkBtn.setOnClickListener(this);
     }
 
     @Override
@@ -63,6 +64,12 @@ public class CabinetActivity extends AppCompatActivity implements LogToggle, Vie
             case R.id.searchNVBtn:
                 intent.setClassName("com.ics499.mixme",
                         "com.ics499.mixme.UI.SearchActivity");
+                startActivity(intent);
+                break;
+
+            case R.id.createNVBtn:
+                intent.setClassName("com.ics499.mixme",
+                        "com.ics499.mixme.UI.CreateDrinkActivity");
                 startActivity(intent);
                 break;
         }
