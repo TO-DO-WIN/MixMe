@@ -25,6 +25,38 @@ public class Catalog {
         this.nearMakable = new ArrayList<>();
 
         // Call to DB to get all ingredients and all drinks
+
+        // mock this call for now
+        // ingreds
+        Ingredient a = new Ingredient("oj", 0);
+        Ingredient b = new Ingredient("vodka", 1);
+        Ingredient c = new Ingredient("kahlua", 2);
+        Ingredient d = new Ingredient("tomato juice", 3);
+        Ingredient e = new Ingredient("whiskey", 4);
+        Ingredient f = new Ingredient("coke", 5);
+        Ingredient g = new Ingredient("ginger beer", 6);
+        Ingredient h = new Ingredient("milk", 7);
+
+        allIngredients.add(a);
+        allIngredients.add(b);
+        allIngredients.add(c);
+        allIngredients.add(d);
+        allIngredients.add(e);
+        allIngredients.add(f);
+        allIngredients.add(g);
+        allIngredients.add(h);
+
+        Drink z = new Drink("srewdriver", new Ingredient[]{a,b});
+        Drink y = new Drink("bloody mary", new Ingredient[]{d,b});
+        Drink x = new Drink("white russian", new Ingredient[]{b,c,h});
+
+        allDrinks.add(z);
+        allDrinks.add(y);
+        allDrinks.add(x);
+
+
+
+
     }
 
     public static Catalog getInstance(){
@@ -99,7 +131,7 @@ public class Catalog {
                 d.setPercentMatch(100);
                 makable.add(d);
             }
-            else if (percent > 66){
+            else if (percent >= 66){
                 d.setPercentMatch(percent);
                 nearMakable.add(d);
             }

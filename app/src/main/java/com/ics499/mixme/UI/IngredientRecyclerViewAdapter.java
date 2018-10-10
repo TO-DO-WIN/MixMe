@@ -49,7 +49,7 @@ public class IngredientRecyclerViewAdapter extends
         String ingredient = ingreds.get(position);
         holder.checkBox.setText(ingredient);
         // not sure if needed
-        // holder.bind(position);
+        holder.bind(position);
     }
 
     @Override

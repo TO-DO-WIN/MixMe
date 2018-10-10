@@ -1,6 +1,7 @@
 package com.ics499.mixme.controller;
 
 import android.content.Intent;
+import android.util.Log;
 import android.util.SparseBooleanArray;
 
 import com.ics499.mixme.model.Catalog;
@@ -19,8 +20,8 @@ public class Controller {
     private User user;
 
     private Controller() {
-        Catalog.getInstance();
-        User.getInstance();
+        catalog = Catalog.getInstance();
+        user = User.getInstance();
     }
 
     /**
@@ -39,23 +40,28 @@ public class Controller {
         ArrayList<String> ingredients = new ArrayList<>();
 
         // populate list------------------to be replaced with call to get actual list from db
-        ingredients.add("Orange Juice");
-        ingredients.add("Vodka");
-        ingredients.add("Brandy");
-        ingredients.add("Whiskey");
-        ingredients.add("Rye");
-        ingredients.add("Dry Vermouth");
-        ingredients.add("Sour");
-        ingredients.add("Coke");
-        ingredients.add("Lime Juice");
-        ingredients.add("Midori");
-        ingredients.add("Jagermeister");
-        ingredients.add("Rumpleminze");
-        ingredients.add("Yukon Jack");
-        ingredients.add("Ginger Beer");
-        ingredients.add("Scotch");
-        ingredients.add("Beer");
+//        ingredients.add("Orange Juice");
+//        ingredients.add("Vodka");
+//        ingredients.add("Brandy");
+//        ingredients.add("Whiskey");
+//        ingredients.add("Rye");
+//        ingredients.add("Dry Vermouth");
+//        ingredients.add("Sour");
+//        ingredients.add("Coke");
+//        ingredients.add("Lime Juice");
+//        ingredients.add("Midori");
+//        ingredients.add("Jagermeister");
+//        ingredients.add("Rumpleminze");
+//        ingredients.add("Yukon Jack");
+//        ingredients.add("Ginger Beer");
+//        ingredients.add("Scotch");
+//        ingredients.add("Beer");
 
+
+        //return ingredients;
+        for (Ingredient i: catalog.getAllIngredients()){
+            ingredients.add(i.getName());
+        }
 
         return ingredients;
     }
@@ -65,6 +71,7 @@ public class Controller {
 
         //Search each drink for matching ingredients
         //add to each list if matching at least 66%
+
         ArrayList<Ingredient> allIngredients = catalog.getAllIngredients();
         ArrayList<Integer> usingIngredientIDs = new ArrayList<>();
 
@@ -77,11 +84,20 @@ public class Controller {
 
         catalog.setWorkingIngredientIDs(usingIngredientIDs);
 
+        StringBuilder test = new StringBuilder();
+        test.append("ingrdient Ids: ");
+        for (Integer i: usingIngredientIDs){
+            test.append(i.toString());
+            test.append("\t");
+        }
+        Log.d("Debug", test.toString());
+
+
         catalog.searchDrinks();
 
-        makableNames = catalog.getMakableNames();
-        nearMakableNames = catalog.getNearMakableNames();
-        nearMakableMatch = catalog.getNearMakableMatch();
+        makableNames.addAll(catalog.getMakableNames());
+        nearMakableNames.addAll(catalog.getNearMakableNames());
+        nearMakableMatch.addAll(catalog.getNearMakableMatch());
 
     }
 }

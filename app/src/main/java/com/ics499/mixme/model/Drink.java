@@ -10,6 +10,12 @@ public class Drink {
     private int percentMatch;
     private int numIngreds;
 
+    public Drink(String name, Ingredient[] ingreds){
+        this.name = name;
+        this.ingreds = ingreds;
+        this.numIngreds = ingreds.length;
+    }
+
     public Drink(String name, Ingredient[] ingreds, String directions, String glassType, int percentMatch, int numIngreds) {
         this.name = name;
         this.ingreds = ingreds;
@@ -74,7 +80,7 @@ public class Drink {
     public Integer[] getIngredIDs() {
         Integer[] ingredIDs = new Integer[MAX_INGREDS];
 
-        for (int i = 0; i < MAX_INGREDS && (ingreds[i] != null); i++)
+        for (int i = 0; i < ingreds.length; i++)
             ingredIDs[i] = ingreds[i].getId();
 
         return ingredIDs;

@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.util.SparseBooleanArray;
 import android.view.View;
 import android.widget.Button;
 import android.widget.SearchView;
@@ -29,10 +31,13 @@ public class SearchActivity extends AppCompatActivity implements LogToggle,
 
     IngredientRecyclerViewAdapter adapter;
     Controller controller;
+    SparseBooleanArray sba;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
 
         userName = SharedPrefsManager.getUserName(SearchActivity.this);
 
@@ -40,14 +45,17 @@ public class SearchActivity extends AppCompatActivity implements LogToggle,
             setContentView(R.layout.activity_search);
             greeting = (TextView) findViewById(R.id.greeting);
             greeting.setText(userName);
+            logBtn = (Button) findViewById(R.id.logBtn);
+            logBtn.setText("Log Out");
 
             useIngredsBtn = (Button) findViewById(R.id.useIngredsBtn);
             useIngredsBtn.setOnClickListener(this);
         }
-        else
+        else {
             setContentView(R.layout.search_guest);
+            logBtn = (Button) findViewById(R.id.logBtn);
+        }
 
-        logBtn = (Button) findViewById(R.id.logBtn);
         logBtn.setOnClickListener(this);
 
         searchView = (SearchView) findViewById(R.id.searchView);
@@ -62,6 +70,7 @@ public class SearchActivity extends AppCompatActivity implements LogToggle,
 
         controller = Controller.getInstance();
         ArrayList<String> ingredientList = controller.getIngredientList();
+        sba = new SparseBooleanArray();
 
         RecyclerView rv = findViewById(R.id.rvIngredients);
         rv.setLayoutManager(new LinearLayoutManager(this));
@@ -74,6 +83,7 @@ public class SearchActivity extends AppCompatActivity implements LogToggle,
     public void logToggle(String userName) {
         if (userName != null){
             SharedPrefsManager.setUserName(SearchActivity.this, null);
+            greeting.setText("Hello, Guest");
             logBtn.setText("Log In");
         } else {
             Intent intent = new Intent();
@@ -98,15 +108,18 @@ public class SearchActivity extends AppCompatActivity implements LogToggle,
                 ArrayList<String> nearMakableNames = new ArrayList<>();
                 ArrayList<String> nearMakableMatch = new ArrayList<>();
 
-                controller.searchDrinks(adapter.getItemStateArray(), makableNames,
+                controller.searchDrinks(sba, makableNames,
                         nearMakableNames, nearMakableMatch);
 
+
+
                 Intent intent = new Intent();
+                //makableNames.add("gegw");
                 intent.putStringArrayListExtra("makableNames", makableNames);
                 intent.putStringArrayListExtra("nearMakableNames", nearMakableNames);
                 intent.putStringArrayListExtra("nearMakableMatch", nearMakableMatch);
                 intent.setClassName("com.ics499.mixme",
-                        "com.ics499.mixme.UI.DrinksFound");
+                        "com.ics499.mixme.UI.DrinksFoundActivity");
                 startActivity(intent);
         }
     }
@@ -114,5 +127,10 @@ public class SearchActivity extends AppCompatActivity implements LogToggle,
     @Override
     public void onItemClick(View view, int position) {
 
-    }
+        if (sba.get(position)) {
+            sba.put(position, false);
+        }
+        else{
+            sba.put(position, true);
+    }}
 }

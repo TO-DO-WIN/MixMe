@@ -13,6 +13,7 @@ import java.util.List;
 
 public class DrinkRecyclerViewAdapter extends RecyclerView.Adapter<DrinkRecyclerViewAdapter.ViewHolder> {
     private List<String> drinks;
+    private List<String> percents;
     private LayoutInflater inflater;
     private ItemClickListener clickListener;
 
@@ -34,7 +35,7 @@ public class DrinkRecyclerViewAdapter extends RecyclerView.Adapter<DrinkRecycler
         String drink = drinks.get(position);
         holder.button.setText(drink);
         // not sure if needed
-        // holder.bind(position);
+        //holder.bind(position);
     }
 
     @Override

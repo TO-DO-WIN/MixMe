@@ -7,6 +7,11 @@ public class Ingredient {
     private String unit;
     private int id;
 
+    public Ingredient(String name, int id){
+        this.name = name;
+        this.id = id;
+    }
+
     public Ingredient(String name, double volume, String unit, int id) {
         this.name = name;
         this.volume = volume;
