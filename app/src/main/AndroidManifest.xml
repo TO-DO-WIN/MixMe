@@ -32,10 +32,19 @@
             android:label="My Cabinet" />
         <activity
             android:name=".UI.DrinksFoundActivity"
-            android:label="Drinks Found"/>
+            android:label="Drinks Found" />
         <activity
             android:name=".UI.CreateDrinkActivity"
             android:label="Create A Drink" />
+        <activity
+            android:name=".UI.FavoritesActivity"
+            android:label="Favorites"/>
+        <activity
+            android:name=".UI.ShoppingListActivity"
+            android:label="Shopping List"/>
+        <activity
+            android:name=".UI.RandomActivity"
+            android:label="Random Drink" />
     </application>
 
 </manifest>

@@ -1,5 +1,7 @@
 package com.ics499.mixme.model;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -14,7 +16,7 @@ public class Catalog {
     private ArrayList<Drink> makable;
     private ArrayList<Drink> nearMakable;
 
-//make a singleton
+    //make a singleton
     private static Catalog catalog;
 
     private Catalog() {
@@ -46,21 +48,66 @@ public class Catalog {
         allIngredients.add(g);
         allIngredients.add(h);
 
-        Drink z = new Drink("srewdriver", new Ingredient[]{a,b});
-        Drink y = new Drink("bloody mary", new Ingredient[]{d,b});
-        Drink x = new Drink("white russian", new Ingredient[]{b,c,h});
+        Drink z = new Drink("srewdriver", new Ingredient[]{a, b});
+        Drink y = new Drink("bloody mary", new Ingredient[]{d, b});
+        Drink x = new Drink("white russian", new Ingredient[]{b, c, h});
+        Drink zz = new Drink("srewdriver", new Ingredient[]{a, b});
+        Drink zy = new Drink("bloody mary", new Ingredient[]{d, b});
+        Drink zx = new Drink("white russian", new Ingredient[]{b, c, h});
+        Drink xz = new Drink("srewdriver", new Ingredient[]{a, b});
+        Drink xy = new Drink("bloody mary", new Ingredient[]{d, b});
+        Drink xx = new Drink("white russian", new Ingredient[]{b, c, h});
+        Drink zc = new Drink("srewdriver", new Ingredient[]{a, b});
+        Drink yc = new Drink("bloody mary", new Ingredient[]{d, b});
+        Drink xc = new Drink("white russian", new Ingredient[]{b, c, h});
+        Drink zv = new Drink("srewdriver", new Ingredient[]{a, b});
+        Drink yv = new Drink("bloody mary", new Ingredient[]{d, b});
+        Drink xv = new Drink("white russian", new Ingredient[]{b, c, h});
+        Drink zb = new Drink("srewdriver", new Ingredient[]{a, b});
+        Drink yb = new Drink("bloody mary", new Ingredient[]{d, b});
+        Drink xb = new Drink("white russian", new Ingredient[]{b, c, h});
+        Drink zn = new Drink("srewdriver", new Ingredient[]{a, b});
+        Drink yn = new Drink("bloody mary", new Ingredient[]{d, b});
+        Drink xn = new Drink("white russian", new Ingredient[]{b, c, h});
+        Drink zm = new Drink("srewdriver", new Ingredient[]{a, b});
+        Drink ym = new Drink("bloody mary", new Ingredient[]{d, b});
+        Drink mx = new Drink("white russian", new Ingredient[]{b, c, h});
+
+        for (int i = 0; i < 1000; i++) {
+            Drink newDrink = new Drink("newDrink", new Ingredient[]{a, b, c, d, e, f, g, h});
+            allDrinks.add(newDrink);
+        }
 
         allDrinks.add(z);
         allDrinks.add(y);
         allDrinks.add(x);
-
-
+        allDrinks.add(zz);
+        allDrinks.add(zy);
+        allDrinks.add(zx);
+        allDrinks.add(xz);
+        allDrinks.add(xy);
+        allDrinks.add(xx);
+        allDrinks.add(zc);
+        allDrinks.add(yc);
+        allDrinks.add(xc);
+        allDrinks.add(zv);
+        allDrinks.add(yv);
+        allDrinks.add(xv);
+        allDrinks.add(zb);
+        allDrinks.add(yb);
+        allDrinks.add(xb);
+        allDrinks.add(zn);
+        allDrinks.add(yn);
+        allDrinks.add(xn);
+        allDrinks.add(zm);
+        allDrinks.add(ym);
+        allDrinks.add(mx);
 
 
     }
 
-    public static Catalog getInstance(){
-        if(catalog == null){
+    public static Catalog getInstance() {
+        if (catalog == null) {
             catalog = new Catalog();
         }
         return catalog;
@@ -108,7 +155,10 @@ public class Catalog {
 
     public void searchDrinks() {
 
-        for(Drink d: allDrinks){
+        makable.clear();
+        nearMakable.clear();
+
+        for (Drink d : allDrinks) {
             int presentIngreds = 0;
             int totalIngreds = d.getNumIngreds();
             int maxUnavailableIngreds = ((100 - MIN_PERCENT_MATCH) * totalIngreds) / 100;
@@ -116,50 +166,51 @@ public class Catalog {
 
             Integer[] ingredIDs = d.getIngredIDs();
             // for each drink ingredient, while not exceeding maximum number of unavailable
-            for(int i = 0; i < totalIngreds && unavailableIngreds <= maxUnavailableIngreds; i++){
+            for (int i = 0; i < totalIngreds && unavailableIngreds <= maxUnavailableIngreds; i++) {
                 // binary search for drink ingredient among ordered workingIngredients
                 // if found increment presentIngreds
                 // if not found increment unavailableIngreds
-                if (Collections.binarySearch(workingIngredientIDs, ingredIDs[i]) < 0){
+                if (Collections.binarySearch(workingIngredientIDs, ingredIDs[i]) < 0) {
                     unavailableIngreds++;
                 } else {
-                    presentIngreds++;}
+                    presentIngreds++;
+                }
             }
-            int percent = (int)((presentIngreds * 100.0f) / totalIngreds);
+            int percent = (int) ((presentIngreds * 100.0f) / totalIngreds);
 
             if (percent == 100) {
                 d.setPercentMatch(100);
                 makable.add(d);
-            }
-            else if (percent >= 66){
+            } else if (percent >= 66) {
                 d.setPercentMatch(percent);
                 nearMakable.add(d);
             }
         }
 
     }
-    public ArrayList<String> getMakableNames(){
+
+    public ArrayList<String> getMakableNames() {
         ArrayList<String> makableNames = new ArrayList<>();
 
-        for (Drink d: makable){
+        for (Drink d : makable) {
             makableNames.add(d.getName());
         }
         return makableNames;
     }
 
-    public ArrayList<String> getNearMakableNames(){
+    public ArrayList<String> getNearMakableNames() {
         ArrayList<String> nearMakableNames = new ArrayList<>();
 
-        for (Drink d: nearMakable){
+        for (Drink d : nearMakable) {
             nearMakableNames.add(d.getName());
         }
         return nearMakableNames;
     }
 
-    public ArrayList<String> getNearMakableMatch(){
+    public ArrayList<String> getNearMakableMatch() {
         ArrayList<String> nearMakableMatch = new ArrayList<>();
 
-        for (Drink d: nearMakable){
+        for (Drink d : nearMakable) {
             nearMakableMatch.add(Integer.toString(d.getPercentMatch()));
         }
         return nearMakableMatch;
@@ -167,10 +218,10 @@ public class Catalog {
 
     public void createDrink(String drinkName, ArrayList<String> ingredientNames,
                             ArrayList<String> ingredientVolumes, ArrayList<String> ingredientUnits,
-                            ArrayList<Integer> ingredientIDs, String directions, String glassType){
+                            ArrayList<Integer> ingredientIDs, String directions, String glassType) {
 
         Ingredient[] ingredients = new Ingredient[ingredientNames.size()];
-        for (int i = 0; i < ingredients.length; i++){
+        for (int i = 0; i < ingredients.length; i++) {
             ingredients[i] = new Ingredient(ingredientNames.get(i), Double.parseDouble(ingredientVolumes.get(i)),
                     ingredientUnits.get(i), ingredientIDs.get(i));
 //            ingredients[i].setName(ingredientNames.get(i));

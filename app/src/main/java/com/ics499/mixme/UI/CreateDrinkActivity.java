@@ -22,6 +22,7 @@ public class CreateDrinkActivity extends AppCompatActivity implements LogToggle,
     TextView greeting;
     EditText instructions;
     Button logBtn, submitBtn;
+    Button searchDrinksBtn, favesBtn, shoppingBtn, cabinetBtn, randomBtn;
 
     Controller controller;
 
@@ -42,6 +43,21 @@ public class CreateDrinkActivity extends AppCompatActivity implements LogToggle,
         submitBtn = (Button) findViewById(R.id.submitBtn);
         submitBtn.setOnClickListener(this);
 
+        searchDrinksBtn = (Button) findViewById(R.id.searchNVBtn);
+        searchDrinksBtn.setOnClickListener(this);
+
+        favesBtn = (Button) findViewById(R.id.favesNVBtn);
+        favesBtn.setOnClickListener(this);
+
+        shoppingBtn = (Button) findViewById(R.id.shoppingNVBtn);
+        shoppingBtn.setOnClickListener(this);
+
+        cabinetBtn = (Button) findViewById(R.id.cabinetNVBtn);
+        cabinetBtn.setOnClickListener(this);
+
+        randomBtn = (Button) findViewById(R.id.randomNVBtn);
+        randomBtn.setOnClickListener(this);
+
         instructions = (EditText) findViewById(R.id.instructionsText);
 
         controller = Controller.getInstance();
@@ -50,6 +66,8 @@ public class CreateDrinkActivity extends AppCompatActivity implements LogToggle,
 
     @Override
     public void onClick(View v) {
+
+        Intent intent = new Intent();
 
         switch (v.getId()) {
 
@@ -88,10 +106,40 @@ public class CreateDrinkActivity extends AppCompatActivity implements LogToggle,
                 controller.createDrink(drinkAttributes[0], ingredientNames, ingredientVolumes,
                         ingredientUnits, ingredientIDs, drinkAttributes[2], drinkAttributes[3]);
 
-                Intent intent = new Intent();
                 intent.setClassName("com.ics499.mixme",
                         "com.ics499.mixme.UI.SearchActivity");
                 startActivity(intent);
+                break;
+
+            case R.id.searchNVBtn:
+                intent.setClassName("com.ics499.mixme",
+                        "com.ics499.mixme.UI.SearchActivity");
+                startActivity(intent);
+                break;
+
+            case R.id.favesNVBtn:
+                intent.setClassName("com.ics499.mixme",
+                        "com.ics499.mixme.UI.FavoritesActivity");
+                startActivity(intent);
+                break;
+
+            case R.id.shoppingNVBtn:
+                intent.setClassName("com.ics499.mixme",
+                        "com.ics499.mixme.UI.ShoppingListActivity");
+                startActivity(intent);
+                break;
+
+            case R.id.cabinetNVBtn:
+                intent.setClassName("com.ics499.mixme",
+                        "com.ics499.mixme.UI.CabinetActivity");
+                startActivity(intent);
+                break;
+
+            case R.id.randomNVBtn:
+                intent.setClassName("com.ics499.mixme",
+                        "com.ics499.mixme.UI.RandomActivity");
+                startActivity(intent);
+                break;
 
         }
     }

@@ -21,7 +21,7 @@ import java.util.ArrayList;
 public class DrinksFoundActivity extends AppCompatActivity implements LogToggle,
         View.OnClickListener, DrinkRecyclerViewAdapter.ItemClickListener {
 
-    TextView greeting;
+    TextView greeting, canMake, canAlmostMake;
     Button logBtn;
     String userName;
 
@@ -59,6 +59,13 @@ public class DrinksFoundActivity extends AppCompatActivity implements LogToggle,
             test.append("\t");
         }
         Log.d("Debug", test.toString());
+
+        canMake = (TextView) findViewById(R.id.canMake);
+        canAlmostMake = (TextView) findViewById(R.id.canAlmostMake);
+
+        if(makables.size()==0){
+            canMake.setText("Sorry, there are no drinks you can make with the ingredients selected");
+        }
 
         RecyclerView rv = findViewById(R.id.rvDrinks);
         rv.setLayoutManager(new LinearLayoutManager(this));
