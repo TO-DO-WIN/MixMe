@@ -3,6 +3,8 @@ package com.ics499.mixme.UI;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,20 +18,23 @@ import com.ics499.mixme.utilities.SharedPrefsManager;
 import java.util.ArrayList;
 
 public class CreateDrinkActivity extends AppCompatActivity implements LogToggle,
-        View.OnClickListener, IngredientRecyclerViewAdapter.ItemClickListener{
+        View.OnClickListener, CreateRecyclerViewAdapter.ItemClickListener{
 
     String userName;
     TextView greeting;
-    EditText instructions;
-    Button logBtn, submitBtn;
+    EditText drinkNameET, instructionsET, glassTypeET;
+    Button logBtn, addIngredientBtn, submitBtn;
     Button searchDrinksBtn, favesBtn, shoppingBtn, cabinetBtn, randomBtn;
 
     Controller controller;
+    CreateRecyclerViewAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_drink);
+
+        controller = Controller.getInstance();
 
         userName = SharedPrefsManager.getUserName(CreateDrinkActivity.this);
 
@@ -39,6 +44,9 @@ public class CreateDrinkActivity extends AppCompatActivity implements LogToggle,
         logBtn = (Button) findViewById(R.id.logBtn);
         logBtn.setText("Log Out");
         logBtn.setOnClickListener(this);
+
+        addIngredientBtn = (Button) findViewById(R.id.addIngredientBtn);
+        addIngredientBtn.setOnClickListener(this);
 
         submitBtn = (Button) findViewById(R.id.submitBtn);
         submitBtn.setOnClickListener(this);
@@ -58,9 +66,25 @@ public class CreateDrinkActivity extends AppCompatActivity implements LogToggle,
         randomBtn = (Button) findViewById(R.id.randomNVBtn);
         randomBtn.setOnClickListener(this);
 
-        instructions = (EditText) findViewById(R.id.instructionsText);
+        // might want to use boolean extra to determine if texts to be set to creation's values
+        drinkNameET = (EditText) findViewById(R.id.drinkName);
+        drinkNameET.setText(controller.getCreationName());
+        instructionsET = (EditText) findViewById(R.id.instructionsText);
+        instructionsET.setText(controller.getCreationInstructions());
+        glassTypeET = (EditText) findViewById(R.id.glassTypeText);
+        glassTypeET.setText(controller.getCreationGlassType());
 
-        controller = Controller.getInstance();
+
+
+        ArrayList<String> ingreds = controller.getCreationIngredNames();
+        ArrayList<String> volumes = controller.getCreationVolumes();
+        ArrayList<String> units = controller.getCreationUnits();
+
+        RecyclerView rv = findViewById(R.id.rvIngredients);
+        rv.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new CreateRecyclerViewAdapter(this, ingreds, volumes, units);
+        adapter.setClickListener(this);
+        rv.setAdapter(adapter);
 
     }
 
@@ -76,7 +100,7 @@ public class CreateDrinkActivity extends AppCompatActivity implements LogToggle,
                 break;
 
             case R.id.submitBtn:
-                String drinkString = instructions.getText().toString();
+                String drinkString = instructionsET.getText().toString();
 
                 //Temporary means of inputting a drink to be created.
                 // first drink is parsed to create a name, ingredients, directions and glass type
@@ -94,17 +118,20 @@ public class CreateDrinkActivity extends AppCompatActivity implements LogToggle,
                 ArrayList<String> ingredientVolumes = new ArrayList<>();
                 ArrayList<String> ingredientUnits = new ArrayList<>();
                 ArrayList<Integer> ingredientIDs = new ArrayList<>();
+                ArrayList<String> ingredientCats = new ArrayList<>();
                 for (String s: ingredients){
                     String[] parsedIngred = s.split("X");
                     ingredientNames.add(parsedIngred[0]);
                     ingredientVolumes.add(parsedIngred[1]);
                     ingredientUnits.add(parsedIngred[2]);
                     ingredientIDs.add(Integer.parseInt(parsedIngred[3]));
+                    ingredientCats.add(parsedIngred[4]);
                 }
 
                 // TO-DO -- this will take an SBA instead of Integer ArrayList for IDs
                 controller.createDrink(drinkAttributes[0], ingredientNames, ingredientVolumes,
-                        ingredientUnits, ingredientIDs, drinkAttributes[2], drinkAttributes[3]);
+                        ingredientUnits, ingredientIDs, drinkAttributes[2], drinkAttributes[3],
+                        ingredientCats);
 
                 intent.setClassName("com.ics499.mixme",
                         "com.ics499.mixme.UI.SearchActivity");
@@ -146,7 +173,20 @@ public class CreateDrinkActivity extends AppCompatActivity implements LogToggle,
 
     @Override
     public void onItemClick(View view, int position) {
+        Controller controller = Controller.getInstance();
 
+        controller.removeCreationIngredient(position);
+        controller.setCreationName(drinkNameET.getText().toString());
+        controller.setCreationInstructions(instructionsET.getText().toString());
+        controller.setCreationGlassType(glassTypeET.getText().toString());
+
+        // possibly a booleanextra to determine whether to start intent with previous values of
+        // name, instructs, and glasstype; then would get boolean extra upon starting activity
+        // and using with conditional statements
+        Intent intent = new Intent();
+        intent.setClassName("com.ics499.mixme",
+                "com.ics499.mixme.UI.CreateDrinkActivity");
+        startActivity(intent);
     }
 
     @Override

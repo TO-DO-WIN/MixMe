@@ -6,17 +6,43 @@ public class Ingredient {
     private double volume;
     private String unit;
     private int id;
+    private Category category;
+    public enum Category {
+        GARNISH (1),
+        MIXER (3),
+        LIQUEUR (7),
+        SPIRIT (10);
 
-    public Ingredient(String name, int id){
-        this.name = name;
-        this.id = id;
+        private final int weight;
+
+        Category (int weight){
+            this.weight = weight;
+        }
+        private int weight() {return weight;}
+    };
+
+
+    public int getWeight() {
+        return category.weight();
     }
 
-    public Ingredient(String name, double volume, String unit, int id) {
+    // may dedide we need a way to set weight, but for now only use category to determine weight
+//    public void setWeight(int weight) {
+//        this.weight = weight;
+//    }
+
+    public Ingredient(String name, int id, Category cat){
+        this.name = name;
+        this.id = id;
+        this.category = cat;
+    }
+
+    public Ingredient(String name, double volume, String unit, int id, Category cat) {
         this.name = name;
         this.volume = volume;
         this.unit = unit;
         this.id = id;
+        this.category = cat;
     }
 
     public String getName() {

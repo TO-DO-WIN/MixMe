@@ -1,28 +1,49 @@
 package com.ics499.mixme.model;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
 public class Drink {
 
     private static final int MAX_INGREDS = 15;
     private String name;
-    private Ingredient[] ingreds = new Ingredient[MAX_INGREDS];
+    private ArrayList<Ingredient> ingreds = new ArrayList<>();
+    //private Ingredient[] ingreds = new Ingredient[MAX_INGREDS];
     private String directions;
     private String glassType;
     private int percentMatch;
     private int numIngreds;
+    private int totalWeight = 0;
 
-    public Drink(String name, Ingredient[] ingreds){
-        this.name = name;
-        this.ingreds = ingreds;
-        this.numIngreds = ingreds.length;
+    public int getTotalWeight() {
+        return totalWeight;
     }
 
-    public Drink(String name, Ingredient[] ingreds, String directions, String glassType, int percentMatch, int numIngreds) {
+    private void setTotalWeight() {
+        for (Ingredient i : ingreds) {
+            totalWeight += i.getWeight();
+        }
+    }
+
+    public Drink() {
+    }
+
+    public Drink(String name, ArrayList<Ingredient> ingreds) {
+        this.name = name;
+        this.ingreds = ingreds;
+        //this.numIngreds = ingreds.length;
+        setTotalWeight();
+    }
+
+    public Drink(String name, ArrayList<Ingredient> ingreds, String directions, String glassType, int percentMatch) {
         this.name = name;
         this.ingreds = ingreds;
         this.directions = directions;
         this.glassType = glassType;
         this.percentMatch = percentMatch;
-        this.numIngreds = numIngreds;
+       // this.numIngreds = numIngreds;
     }
 
     public static int getMaxIngreds() {
@@ -37,13 +58,18 @@ public class Drink {
         this.name = name;
     }
 
-    public Ingredient[] getIngreds() {
+    public ArrayList<Ingredient> getIngreds() {
         return ingreds;
     }
 
-    public void setIngreds(Ingredient[] ingreds) {
+    public void setIngreds(ArrayList<Ingredient> ingreds) {
         this.ingreds = ingreds;
     }
+
+    public void removeIngredient(int index) {
+        ingreds.remove(index);
+    }
+
 
     public String getDirections() {
         return directions;
@@ -77,11 +103,11 @@ public class Drink {
         this.numIngreds = numIngreds;
     }
 
-    public Integer[] getIngredIDs() {
-        Integer[] ingredIDs = new Integer[MAX_INGREDS];
+    public ArrayList<Integer> getIngredIDs() {
+        ArrayList<Integer> ingredIDs = new ArrayList<>();
 
-        for (int i = 0; i < ingreds.length; i++)
-            ingredIDs[i] = ingreds[i].getId();
+        for (int i = 0; i < ingreds.size(); i++)
+            ingredIDs.add(ingreds.get(i).getId());
 
         return ingredIDs;
     }

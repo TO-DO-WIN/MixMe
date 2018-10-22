@@ -1,6 +1,7 @@
 package com.ics499.mixme.controller;
 
 import android.content.Intent;
+import android.text.Editable;
 import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.widget.EditText;
@@ -105,13 +106,53 @@ public class Controller {
 
     public void createDrink(String drinkName, ArrayList<String> ingredientNames, ArrayList<String> ingredientVolumes,
                             ArrayList<String> ingredientUnits, ArrayList<Integer> ingredientIDs,
-                            String directions, String glassType){
+                            String directions, String glassType, ArrayList<String> ingredientCats){
 
         // pass along data to catalog, except convert sparseBooleanArray to ArrayList of Integers
         // not using sba yet
-        catalog.createDrink(drinkName, ingredientNames, ingredientVolumes, ingredientUnits, ingredientIDs, directions, glassType);
+        catalog.createDrink(drinkName, ingredientNames, ingredientVolumes, ingredientUnits,
+                ingredientIDs, directions, glassType, ingredientCats);
 
     }
 
 
+    public ArrayList<String> getCreationIngredNames() {
+        return catalog.getCreationIngredNames();
+    }
+
+    public ArrayList<String> getCreationVolumes() {
+        return catalog.getCreationVolumes();
+    }
+
+    public ArrayList<String> getCreationUnits() {
+        return catalog.getCreationUnits();
+    }
+
+    public void removeCreationIngredient(int position){
+        catalog.removeCreationIngredient(position);
+    }
+
+    public void setCreationName(String creationName) {
+        catalog.setCreationName(creationName);
+    }
+
+    public void setCreationInstructions(String creationInstuctions) {
+        catalog.setCreationInstructions(creationInstuctions);
+    }
+
+    public void setCreationGlassType(String creationGlassType) {
+        catalog.setCreationGlassType(creationGlassType);
+    }
+
+    public String getCreationName(){
+        return catalog.getCreationName();
+    }
+
+    public String getCreationInstructions(){
+        return catalog.getCreationInstructions();
+    }
+
+    public String getCreationGlassType(){
+        return catalog.getCreationGlassType();
+    }
 }
