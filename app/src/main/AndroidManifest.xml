@@ -38,13 +38,22 @@
             android:label="Create A Drink" />
         <activity
             android:name=".UI.FavoritesActivity"
-            android:label="Favorites"/>
+            android:label="Favorites" />
         <activity
             android:name=".UI.ShoppingListActivity"
-            android:label="Shopping List"/>
+            android:label="Shopping List" />
         <activity
             android:name=".UI.RandomActivity"
             android:label="Random Drink" />
+        <activity
+            android:name=".UI.SelectIngredientActivity"
+            android:label="Select Ingredient" />
+        <activity
+            android:name=".UI.NewIngredientActivity"
+            android:label="New Ingredient" />
+        <activity
+            android:name=".UI.IngredientVolumeActivity"
+            android:label="Ingredient Volume" />
     </application>
 
 </manifest>

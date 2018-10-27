@@ -33,7 +33,7 @@ public class Drink {
     public Drink(String name, ArrayList<Ingredient> ingreds) {
         this.name = name;
         this.ingreds = ingreds;
-        //this.numIngreds = ingreds.length;
+        this.numIngreds = ingreds.size();
         setTotalWeight();
     }
 
@@ -43,7 +43,8 @@ public class Drink {
         this.directions = directions;
         this.glassType = glassType;
         this.percentMatch = percentMatch;
-       // this.numIngreds = numIngreds;
+        this.numIngreds = ingreds.size();
+        setTotalWeight();
     }
 
     public static int getMaxIngreds() {
@@ -67,7 +68,9 @@ public class Drink {
     }
 
     public void removeIngredient(int index) {
+        totalWeight -= ingreds.get(index).getWeight();
         ingreds.remove(index);
+        numIngreds--;
     }
 
 
@@ -110,5 +113,11 @@ public class Drink {
             ingredIDs.add(ingreds.get(i).getId());
 
         return ingredIDs;
+    }
+
+    public void addIngredient(Ingredient i) {
+        totalWeight += i.getWeight();
+        ingreds.add(i);
+        numIngreds++;
     }
 }

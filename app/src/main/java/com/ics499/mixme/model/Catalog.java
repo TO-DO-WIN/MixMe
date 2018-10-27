@@ -16,6 +16,8 @@ public class Catalog {
     private ArrayList<Drink> makable;
     private ArrayList<Drink> nearMakable;
     private Drink creation;
+    private ArrayList<Ingredient> newIngredients;
+    private static final int NO_ID = -1;
 
     //make a singleton
     private static Catalog catalog;
@@ -27,6 +29,7 @@ public class Catalog {
         this.makable = new ArrayList<>();
         this.nearMakable = new ArrayList<>();
         this.creation = new Drink();
+        this.newIngredients = new ArrayList<>();
 
         // Call to DB to get all ingredients and all drinks
 
@@ -190,9 +193,9 @@ public class Catalog {
                 // if found increment presentIngreds
                 // if not found increment unavailableIngreds
                 if (Collections.binarySearch(workingIngredientIDs, ingredIDs.get(i)) < 0) {
-                    unavailableWeight += allIngredients.get(i).getWeight();
+                    unavailableWeight += allIngredients.get(ingredIDs.get(i)).getWeight();
                 } else {
-                    currentWeight += allIngredients.get(i).getWeight();
+                    currentWeight += allIngredients.get(ingredIDs.get(i)).getWeight();
                 }
             }
             int percent = (int) ((currentWeight * 100.0f) / totalDrinkWeight);
@@ -340,4 +343,36 @@ public class Catalog {
     public String getCreationGlassType() {
         return creation.getGlassType();
     }
+
+    public void setCreationIngredient(int ingredientId, double ingredientVolume, String units,
+                                      String name, Ingredient.Category category) {
+        Ingredient i;
+
+        if (ingredientId == NO_ID){
+            i = new Ingredient(name, ingredientVolume, units, NO_ID, category);
+            newIngredients.add(i);
+        } else {
+            i = allIngredients.get(ingredientId);
+            i.setVolume(ingredientVolume);
+            i.setUnit(units);
+        }
+
+        creation.addIngredient(i);
+    }
+
+    public String getIngredientName(int ingredientID) {
+        return allIngredients.get(ingredientID).getName();
+    }
+/*
+    This version of setCreationIngredient method is for newly created ingredients. A newly created ingredient
+    will need to have a name, not just id (doesn't have an id yet), also it needs a category. Here, the new
+    ingredient can be stored in db and given and id. Ingredient list will need to be repopulated with new
+    ingredient inserted in the list.
+ */
+
+    public void addCreation(){
+        allDrinks.add(creation);
+        creation = new Drink();
+    }
+
 }

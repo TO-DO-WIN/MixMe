@@ -66,15 +66,15 @@ public class CreateDrinkActivity extends AppCompatActivity implements LogToggle,
         randomBtn = (Button) findViewById(R.id.randomNVBtn);
         randomBtn.setOnClickListener(this);
 
-        // might want to use boolean extra to determine if texts to be set to creation's values
         drinkNameET = (EditText) findViewById(R.id.drinkName);
-        drinkNameET.setText(controller.getCreationName());
         instructionsET = (EditText) findViewById(R.id.instructionsText);
-        instructionsET.setText(controller.getCreationInstructions());
         glassTypeET = (EditText) findViewById(R.id.glassTypeText);
-        glassTypeET.setText(controller.getCreationGlassType());
 
-
+        if (getIntent().getBooleanExtra("use values", false)){
+            drinkNameET.setText(controller.getCreationName());
+            instructionsET.setText(controller.getCreationInstructions());
+            glassTypeET.setText(controller.getCreationGlassType());
+        }
 
         ArrayList<String> ingreds = controller.getCreationIngredNames();
         ArrayList<String> volumes = controller.getCreationVolumes();
@@ -99,40 +99,19 @@ public class CreateDrinkActivity extends AppCompatActivity implements LogToggle,
                 logToggle(userName);
                 break;
 
+            case R.id.addIngredientBtn:
+
+                controller.setCreationName(drinkNameET.getText().toString());
+                controller.setCreationInstructions(instructionsET.getText().toString());
+                controller.setCreationGlassType(glassTypeET.getText().toString());
+
+                intent.setClassName("com.ics499.mixme",
+                        "com.ics499.mixme.UI.SelectIngredientActivity");
+                startActivity(intent);
+                break;
+
             case R.id.submitBtn:
-                String drinkString = instructionsET.getText().toString();
-
-                //Temporary means of inputting a drink to be created.
-                // first drink is parsed to create a name, ingredients, directions and glass type
-                // these are separated by '-' There should be four elements
-                String[] drinkAttributes = drinkString.split("-");
-
-                // next ingredients, the second element is parsed and separated by :
-
-                String[] ingredients = drinkAttributes[1].split(":");
-
-                // Now ingredients array holds unkonwn number of ingredient strings
-                // each string has a name, a volume and a unit these are separated by X
-
-                ArrayList<String> ingredientNames = new ArrayList<>();
-                ArrayList<String> ingredientVolumes = new ArrayList<>();
-                ArrayList<String> ingredientUnits = new ArrayList<>();
-                ArrayList<Integer> ingredientIDs = new ArrayList<>();
-                ArrayList<String> ingredientCats = new ArrayList<>();
-                for (String s: ingredients){
-                    String[] parsedIngred = s.split("X");
-                    ingredientNames.add(parsedIngred[0]);
-                    ingredientVolumes.add(parsedIngred[1]);
-                    ingredientUnits.add(parsedIngred[2]);
-                    ingredientIDs.add(Integer.parseInt(parsedIngred[3]));
-                    ingredientCats.add(parsedIngred[4]);
-                }
-
-                // TO-DO -- this will take an SBA instead of Integer ArrayList for IDs
-                controller.createDrink(drinkAttributes[0], ingredientNames, ingredientVolumes,
-                        ingredientUnits, ingredientIDs, drinkAttributes[2], drinkAttributes[3],
-                        ingredientCats);
-
+                controller.addCreation();
                 intent.setClassName("com.ics499.mixme",
                         "com.ics499.mixme.UI.SearchActivity");
                 startActivity(intent);
@@ -184,6 +163,7 @@ public class CreateDrinkActivity extends AppCompatActivity implements LogToggle,
         // name, instructs, and glasstype; then would get boolean extra upon starting activity
         // and using with conditional statements
         Intent intent = new Intent();
+        intent.putExtra("use values", true);
         intent.setClassName("com.ics499.mixme",
                 "com.ics499.mixme.UI.CreateDrinkActivity");
         startActivity(intent);

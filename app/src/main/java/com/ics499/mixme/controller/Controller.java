@@ -5,6 +5,7 @@ import android.text.Editable;
 import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.ics499.mixme.model.Catalog;
 import com.ics499.mixme.model.Drink;
@@ -62,7 +63,7 @@ public class Controller {
 
 
         //return ingredients;
-        for (Ingredient i: catalog.getAllIngredients()){
+        for (Ingredient i : catalog.getAllIngredients()) {
             ingredients.add(i.getName());
         }
 
@@ -89,7 +90,7 @@ public class Controller {
 
         StringBuilder test = new StringBuilder();
         test.append("ingrdient Ids: ");
-        for (Integer i: usingIngredientIDs){
+        for (Integer i : usingIngredientIDs) {
             test.append(i.toString());
             test.append("\t");
         }
@@ -106,7 +107,7 @@ public class Controller {
 
     public void createDrink(String drinkName, ArrayList<String> ingredientNames, ArrayList<String> ingredientVolumes,
                             ArrayList<String> ingredientUnits, ArrayList<Integer> ingredientIDs,
-                            String directions, String glassType, ArrayList<String> ingredientCats){
+                            String directions, String glassType, ArrayList<String> ingredientCats) {
 
         // pass along data to catalog, except convert sparseBooleanArray to ArrayList of Integers
         // not using sba yet
@@ -128,7 +129,7 @@ public class Controller {
         return catalog.getCreationUnits();
     }
 
-    public void removeCreationIngredient(int position){
+    public void removeCreationIngredient(int position) {
         catalog.removeCreationIngredient(position);
     }
 
@@ -144,15 +145,53 @@ public class Controller {
         catalog.setCreationGlassType(creationGlassType);
     }
 
-    public String getCreationName(){
+    public String getCreationName() {
         return catalog.getCreationName();
     }
 
-    public String getCreationInstructions(){
+    public String getCreationInstructions() {
         return catalog.getCreationInstructions();
     }
 
-    public String getCreationGlassType(){
+    public String getCreationGlassType() {
         return catalog.getCreationGlassType();
+    }
+
+    public String getIngredientName(int ingredientID) {
+        return catalog.getIngredientName(ingredientID);
+    }
+
+    public void setCreationIngredient(int ingredientId, double ingredientVolume, int units, String newIngredientName,
+                                      String category) {
+        String unitString;
+        switch (units) {
+            case 0:
+                unitString = "Ounces";
+                break;
+            case 1:
+                unitString = "Milliliters";
+                break;
+            case 2:
+                unitString = "Parts";
+                break;
+            case 3:
+                unitString = "Pieces";
+                break;
+            default:
+                unitString = "Dashes";
+                break;
+        }
+        Ingredient.Category cat = Ingredient.Category.getCategory(category);
+
+        catalog.setCreationIngredient(ingredientId, ingredientVolume, unitString, newIngredientName, cat);
+
+    }
+
+//    public void setCreationIngredient(String newIngredientName, int categoryID, double ingredientVolume, int units) {
+//        catalog.setCreationIngredient(newIngredientName, categoryID, ingredientVolume, units);
+//    }
+
+    public void addCreation() {
+        catalog.addCreation();
     }
 }

@@ -10,6 +10,7 @@ public class Ingredient {
     public enum Category {
         GARNISH (1),
         MIXER (3),
+        LOW_ALCOHOL (5),
         LIQUEUR (7),
         SPIRIT (10);
 
@@ -18,14 +19,29 @@ public class Ingredient {
         Category (int weight){
             this.weight = weight;
         }
-        private int weight() {return weight;}
+        public int weight() {return weight;}
+        public static Category getCategory(String catName){
+            switch (catName){
+                case "Garnish":
+                    return GARNISH;
+                case "Mixer":
+                    return MIXER;
+                case "Low-Alcohol":
+                    return LOW_ALCOHOL;
+                case "Liqueur":
+                    return LIQUEUR;
+                case "Spirit":
+                    return SPIRIT;
+                default:
+                    return null;
+            }
+        }
     };
 
 
     public int getWeight() {
         return category.weight();
     }
-
     // may dedide we need a way to set weight, but for now only use category to determine weight
 //    public void setWeight(int weight) {
 //        this.weight = weight;
