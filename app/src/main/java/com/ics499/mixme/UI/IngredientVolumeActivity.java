@@ -25,7 +25,7 @@ public class IngredientVolumeActivity extends AppCompatActivity implements LogTo
     TextView nameTV;
     EditText volumeET;
     RadioGroup unitsRG;
-    RadioButton ouncesRB, mLRB, partsRB, dashesRB;
+    RadioButton selectedRB;
 
     Controller controller;
 
@@ -82,6 +82,8 @@ public class IngredientVolumeActivity extends AppCompatActivity implements LogTo
 /////////////////////////////////////////////////////////////////////
         volumeET = (EditText) findViewById(R.id.volumeET);
 
+        unitsRG = (RadioGroup) findViewById(R.id.unitsRG);
+
 
 ////////////////////////////////////////////////////////////
         cancelBtn = (Button) findViewById(R.id.cancelBtn);
@@ -132,7 +134,10 @@ public class IngredientVolumeActivity extends AppCompatActivity implements LogTo
             case R.id.submitBtn:
                 // will need try catch for bad data input
                 ingredientVolume = Double.parseDouble(volumeET.getText().toString());
-                units = 0;
+
+                int selectedID = unitsRG.getCheckedRadioButtonId();
+                selectedRB = (RadioButton) findViewById(selectedID);
+                String units = selectedRB.getText().toString();
 
                 controller.setCreationIngredient(ingredientId, ingredientVolume, units, newIngredientName, cat);
 

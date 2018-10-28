@@ -161,29 +161,15 @@ public class Controller {
         return catalog.getIngredientName(ingredientID);
     }
 
-    public void setCreationIngredient(int ingredientId, double ingredientVolume, int units, String newIngredientName,
+    public void setCreationIngredient(int ingredientId, double ingredientVolume, String units, String newIngredientName,
                                       String category) {
-        String unitString;
-        switch (units) {
-            case 0:
-                unitString = "Ounces";
-                break;
-            case 1:
-                unitString = "Milliliters";
-                break;
-            case 2:
-                unitString = "Parts";
-                break;
-            case 3:
-                unitString = "Pieces";
-                break;
-            default:
-                unitString = "Dashes";
-                break;
+        Ingredient.Category cat;
+        if (ingredientId==-1) {
+             cat = Ingredient.Category.getCategory(category);
+        } else {
+            cat = null;
         }
-        Ingredient.Category cat = Ingredient.Category.getCategory(category);
-
-        catalog.setCreationIngredient(ingredientId, ingredientVolume, unitString, newIngredientName, cat);
+        catalog.setCreationIngredient(ingredientId, ingredientVolume, units, newIngredientName, cat);
 
     }
 

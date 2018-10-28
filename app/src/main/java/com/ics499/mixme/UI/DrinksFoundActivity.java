@@ -24,14 +24,14 @@ public class DrinksFoundActivity extends AppCompatActivity implements LogToggle,
     TextView greeting, canMake, canAlmostMake;
     Button logBtn;
     String userName;
+    Button searchDrinksBtn, createDrinkBtn, favesBtn, shoppingBtn, cabinetBtn, randomBtn;
 
-    DrinkRecyclerViewAdapter adapterOne, adapterTwo;
+    DrinkRecyclerViewAdapter adapter;
     Controller controller;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        Log.d("Debug","In DrinksFoundActivity");
         super.onCreate(savedInstanceState);
 
         userName = SharedPrefsManager.getUserName(DrinksFoundActivity.this);
@@ -44,49 +44,109 @@ public class DrinksFoundActivity extends AppCompatActivity implements LogToggle,
             logBtn.setText("Log Out");
 
         } else {
-            setContentView(R.layout.search_guest);
+            setContentView(R.layout.drinks_found_guest);
             logBtn = (Button) findViewById(R.id.logBtn);
         }
 
         logBtn.setOnClickListener(this);
 
+        searchDrinksBtn = (Button) findViewById(R.id.searchNVBtn);
+        searchDrinksBtn.setOnClickListener(this);
+
+        createDrinkBtn = (Button) findViewById(R.id.createNVBtn);
+        createDrinkBtn.setOnClickListener(this);
+
+        favesBtn = (Button) findViewById(R.id.favesNVBtn);
+        favesBtn.setOnClickListener(this);
+
+        shoppingBtn = (Button) findViewById(R.id.shoppingNVBtn);
+        shoppingBtn.setOnClickListener(this);
+
+        cabinetBtn = (Button) findViewById(R.id.cabinetNVBtn);
+        cabinetBtn.setOnClickListener(this);
+
+        randomBtn = (Button) findViewById(R.id.randomNVBtn);
+        randomBtn.setOnClickListener(this);
+
         ArrayList<String> makables = getIntent().getStringArrayListExtra("makableNames");
         ArrayList<String> nearMakables = getIntent().getStringArrayListExtra("nearMakableNames");
-
-        StringBuilder test = new StringBuilder();
-        for (String s: makables){
-            test.append(s);
-            test.append("\t");
-        }
-        Log.d("Debug", test.toString());
+        ArrayList<String> nearMakableMatch = getIntent().getStringArrayListExtra("nearMakableMatch");
 
         canMake = (TextView) findViewById(R.id.canMake);
-        canAlmostMake = (TextView) findViewById(R.id.canAlmostMake);
 
         if(makables.size()==0){
             canMake.setText("Sorry, there are no drinks you can make with the ingredients selected");
         }
 
+        ArrayList<Object> drinkObjects = new ArrayList<>();
+        for (String d: makables){
+            drinkObjects.add(new DrinkForAdapter(d, "100"));
+        }
+        drinkObjects.add("You can almost make these drinks");
+        for (int i = 0; i < nearMakables.size(); i++){
+            drinkObjects.add(new DrinkForAdapter(nearMakables.get(i), nearMakableMatch.get(i)));
+        }
+
+
         RecyclerView rv = findViewById(R.id.rvDrinks);
         rv.setLayoutManager(new LinearLayoutManager(this));
-        adapterOne = new DrinkRecyclerViewAdapter(this, makables);
-        adapterOne.setClickListener(this);
-        rv.setAdapter(adapterOne);
+        //adapter = new DrinkRecyclerViewAdapter(this, drinkObjects);
+        //adapter.setClickListener(this);
+        rv.setAdapter(new DrinkRecyclerViewAdapter(this, drinkObjects));
 
-        RecyclerView rv2 = findViewById(R.id.rvnearDrinks);
-        rv2.setLayoutManager(new LinearLayoutManager(this));
-        adapterTwo = new DrinkRecyclerViewAdapter(this, nearMakables);
-        adapterTwo.setClickListener(this);
-        rv2.setAdapter(adapterTwo);
     }
 
     @Override
     public void onClick(View v) {
+        Intent intent = new Intent();
 
+        switch (v.getId()) {
+
+            case R.id.logBtn:
+                logToggle(userName);
+                break;
+
+            case R.id.searchNVBtn:
+                intent.setClassName("com.ics499.mixme",
+                        "com.ics499.mixme.UI.SearchActivity");
+                startActivity(intent);
+                break;
+
+            case R.id.createNVBtn:
+                intent.setClassName("com.ics499.mixme",
+                        "com.ics499.mixme.UI.CreateDrinkActivity");
+                startActivity(intent);
+                break;
+
+            case R.id.favesNVBtn:
+                intent.setClassName("com.ics499.mixme",
+                        "com.ics499.mixme.UI.FavoritesActivity");
+                startActivity(intent);
+                break;
+
+            case R.id.shoppingNVBtn:
+                intent.setClassName("com.ics499.mixme",
+                        "com.ics499.mixme.UI.ShoppingListActivity");
+                startActivity(intent);
+                break;
+
+            case R.id.cabinetNVBtn:
+                intent.setClassName("com.ics499.mixme",
+                        "com.ics499.mixme.UI.CabinetActivity");
+                startActivity(intent);
+                break;
+
+            case R.id.randomNVBtn:
+                intent.setClassName("com.ics499.mixme",
+                        "com.ics499.mixme.UI.RandomActivity");
+                startActivity(intent);
+                break;
+        }
     }
 
     @Override
     public void onItemClick(View view, int position) {
+        controller = Controller.getInstance();
 
     }
 
@@ -102,5 +162,31 @@ public class DrinksFoundActivity extends AppCompatActivity implements LogToggle,
             startActivity(intent);
         }
 
+    }
+
+    public class DrinkForAdapter{
+        public String drinkName;
+        public String drinkPercent;
+
+        DrinkForAdapter(String drinkName, String drinkPercent){
+            this.drinkName = drinkName;
+            this.drinkPercent = drinkPercent;
+        }
+
+        public String getDrinkName() {
+            return drinkName;
+        }
+
+        public void setDrinkName(String drinkName) {
+            this.drinkName = drinkName;
+        }
+
+        public String getDrinkPercent() {
+            return drinkPercent;
+        }
+
+        public void setDrinkPercent(String drinkPercent) {
+            this.drinkPercent = drinkPercent;
+        }
     }
 }

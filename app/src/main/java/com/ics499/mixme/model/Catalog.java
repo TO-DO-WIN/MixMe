@@ -372,6 +372,15 @@ public class Catalog {
 
     public void addCreation(){
         allDrinks.add(creation);
+
+        int prevIngredientsSize = allIngredients.size();
+
+        allIngredients.addAll(newIngredients);
+        // need to assign ids to new ingredients
+        for (int i = prevIngredientsSize; i < allIngredients.size(); i++){
+            allIngredients.get(i).setId(i);
+        }
+
         creation = new Drink();
     }
 
