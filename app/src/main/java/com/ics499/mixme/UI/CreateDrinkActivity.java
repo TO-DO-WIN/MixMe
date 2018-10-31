@@ -111,6 +111,10 @@ public class CreateDrinkActivity extends AppCompatActivity implements LogToggle,
                 break;
 
             case R.id.submitBtn:
+                controller.setCreationName(drinkNameET.getText().toString());
+                controller.setCreationInstructions(instructionsET.getText().toString());
+                controller.setCreationGlassType(glassTypeET.getText().toString());
+
                 controller.addCreation();
                 intent.setClassName("com.ics499.mixme",
                         "com.ics499.mixme.UI.SearchActivity");

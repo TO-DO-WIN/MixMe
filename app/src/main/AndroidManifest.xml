@@ -54,6 +54,9 @@
         <activity
             android:name=".UI.IngredientVolumeActivity"
             android:label="Ingredient Volume" />
+        <activity
+            android:name=".UI.DrinkRecipeActivity"
+            android:label="Drink Recipe" />
     </application>
 
 </manifest>

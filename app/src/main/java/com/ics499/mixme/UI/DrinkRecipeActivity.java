@@ -5,47 +5,66 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.ics499.mixme.R;
 import com.ics499.mixme.controller.Controller;
-import com.ics499.mixme.model.Drink;
 import com.ics499.mixme.utilities.LogToggle;
 import com.ics499.mixme.utilities.SharedPrefsManager;
 
 import java.util.ArrayList;
 
-public class DrinksFoundActivity extends AppCompatActivity implements LogToggle,
-        View.OnClickListener, DrinkRecyclerViewAdapter.ItemClickListener {
+public class DrinkRecipeActivity extends AppCompatActivity implements LogToggle, View.OnClickListener,
+        CreateRecyclerViewAdapter.ItemClickListener {
 
-    TextView greeting, canMake, canAlmostMake;
+    TextView greeting;
     Button logBtn;
     String userName;
     Button searchDrinksBtn, createDrinkBtn, favesBtn, shoppingBtn, cabinetBtn, randomBtn;
 
-    DrinkRecyclerViewAdapter adapter;
+    TextView drinkNameTV, drinkRatingTV, instructionsTV, glassTV;
+    RecyclerView rv;
     Controller controller;
-    ArrayList<Object> drinkObjects = new ArrayList<>();
+    CreateRecyclerViewAdapter adapter;
+
+    Button addFavesBtn, rateBtn;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
 
-        userName = SharedPrefsManager.getUserName(DrinksFoundActivity.this);
+        userName = SharedPrefsManager.getUserName(DrinkRecipeActivity.this);
 
         if (userName != null) {
-            setContentView(R.layout.activity_drinks_found);
+            setContentView(R.layout.activity_drink_recipe);
             greeting = (TextView) findViewById(R.id.greeting);
             greeting.setText(userName);
             logBtn = (Button) findViewById(R.id.logBtn);
             logBtn.setText("Log Out");
 
-        } else {
-            setContentView(R.layout.drinks_found_guest);
+            createDrinkBtn = (Button) findViewById(R.id.createNVBtn);
+            createDrinkBtn.setOnClickListener(this);
+
+            favesBtn = (Button) findViewById(R.id.favesNVBtn);
+            favesBtn.setOnClickListener(this);
+
+            shoppingBtn = (Button) findViewById(R.id.shoppingNVBtn);
+            shoppingBtn.setOnClickListener(this);
+
+            cabinetBtn = (Button) findViewById(R.id.cabinetNVBtn);
+            cabinetBtn.setOnClickListener(this);
+
+            addFavesBtn = (Button) findViewById(R.id.addFavesBtn);
+            addFavesBtn.setOnClickListener(this);
+
+            rateBtn = (Button) findViewById(R.id.rateBtn);
+            rateBtn.setOnClickListener(this);
+        }
+        else {
+            setContentView(R.layout.drink_recipe_guest);
             logBtn = (Button) findViewById(R.id.logBtn);
         }
 
@@ -54,44 +73,45 @@ public class DrinksFoundActivity extends AppCompatActivity implements LogToggle,
         searchDrinksBtn = (Button) findViewById(R.id.searchNVBtn);
         searchDrinksBtn.setOnClickListener(this);
 
-        createDrinkBtn = (Button) findViewById(R.id.createNVBtn);
-        createDrinkBtn.setOnClickListener(this);
-
-        favesBtn = (Button) findViewById(R.id.favesNVBtn);
-        favesBtn.setOnClickListener(this);
-
-        shoppingBtn = (Button) findViewById(R.id.shoppingNVBtn);
-        shoppingBtn.setOnClickListener(this);
-
-        cabinetBtn = (Button) findViewById(R.id.cabinetNVBtn);
-        cabinetBtn.setOnClickListener(this);
-
         randomBtn = (Button) findViewById(R.id.randomNVBtn);
         randomBtn.setOnClickListener(this);
 
-        ArrayList<String> makables = getIntent().getStringArrayListExtra("makableNames");
-        ArrayList<String> nearMakables = getIntent().getStringArrayListExtra("nearMakableNames");
-        ArrayList<String> nearMakableMatch = getIntent().getStringArrayListExtra("nearMakableMatch");
+        controller = Controller.getInstance();
 
-        canMake = (TextView) findViewById(R.id.canMake);
+        Intent intent = getIntent();
+        String drinkName = intent.getStringExtra("drink");
+        controller.setRecipe(drinkName);
 
-        if(makables.size()==0){
-            canMake.setText("Sorry, there are no drinks you can make with the ingredients selected");
+        ArrayList<String> recipeIngredients = controller.getRecipeIngredients();
+        ArrayList<String> recipeVolumes = controller.getRecipeVolumes();
+        ArrayList<String> recipeUnits = controller.getRecipeUnits();
+
+        String instructions = controller.getRecipeInstructions();
+        String glassType = controller.getRecipeGlassType();
+
+        if (userName!=null) {
+            ArrayList<Boolean> hasIngredient = controller.getHasIngredient(recipeIngredients);
+            boolean isFavorite = controller.isFavorite(drinkName);
         }
 
+        drinkNameTV = (TextView) findViewById(R.id.drink_name);
+        drinkNameTV.setText(drinkName);
 
-        for (String d: makables){
-            drinkObjects.add(new DrinkForAdapter(d, "100"));
-        }
-        drinkObjects.add("You can almost make these drinks");
-        for (int i = 0; i < nearMakables.size(); i++){
-            drinkObjects.add(new DrinkForAdapter(nearMakables.get(i), nearMakableMatch.get(i)));
-        }
+        drinkRatingTV = (TextView) findViewById(R.id.rating);
+        drinkRatingTV.setText("Rating = 4.5");//////////////////////////////////// Save for later
 
+        instructionsTV = (TextView) findViewById(R.id.instructionsTV);
+        instructionsTV.setText(instructions);
 
-        RecyclerView rv = findViewById(R.id.rvDrinks);
+        glassTV = (TextView) findViewById(R.id.glassTypeTV);
+        glassTV.setText(glassType);
+
+        RecyclerView rv = findViewById(R.id.rvIngredients);
         rv.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new DrinkRecyclerViewAdapter(this, drinkObjects);
+
+        // must pass a value for 
+        adapter = new CreateRecyclerViewAdapter(this, recipeIngredients, recipeVolumes,
+                recipeUnits);
         adapter.setClickListener(this);
         rv.setAdapter(adapter);
 
@@ -99,6 +119,7 @@ public class DrinksFoundActivity extends AppCompatActivity implements LogToggle,
 
     @Override
     public void onClick(View v) {
+
         Intent intent = new Intent();
 
         switch (v.getId()) {
@@ -146,58 +167,26 @@ public class DrinksFoundActivity extends AppCompatActivity implements LogToggle,
     }
 
     @Override
-    public void onItemClick(View view, int position) {
-
-        // probably need to handle for clicking on the text item which is not a DrinkForAdapter
-
-        DrinkForAdapter drink = (DrinkForAdapter) drinkObjects.get(position);
-        String nameString = drink.getDrinkName();
-
-        Intent intent = new Intent();
-        intent.putExtra("drink", nameString);
-        intent.setClassName("com.ics499.mixme",
-                "com.ics499.mixme.UI.DrinkRecipeActivity");
-        startActivity(intent);
-
-    }
-
-    @Override
     public void logToggle(String userName) {
-        if (userName != null){
-            SharedPrefsManager.setUserName(DrinksFoundActivity.this, null);
-            logBtn.setText("Log In");
+
+        if (userName != null) {
+            SharedPrefsManager.setUserName(DrinkRecipeActivity.this, null);
+            Intent intent = new Intent();
+            intent.setClassName("com.ics499.mixme",
+                    "com.ics499.mixme.UI.SearchActivity");
+            startActivity(intent);
         } else {
+
+            // This should never happen...shouldn't be in Cabinet without logged in
             Intent intent = new Intent();
             intent.setClassName("com.ics499.mixme",
                     "com.ics499.mixme.UI.LoginActivity");
             startActivity(intent);
         }
-
     }
 
-    public class DrinkForAdapter{
-        public String drinkName;
-        public String drinkPercent;
+    @Override
+    public void onItemClick(View view, int position) {
 
-        DrinkForAdapter(String drinkName, String drinkPercent){
-            this.drinkName = drinkName;
-            this.drinkPercent = drinkPercent;
-        }
-
-        public String getDrinkName() {
-            return drinkName;
-        }
-
-        public void setDrinkName(String drinkName) {
-            this.drinkName = drinkName;
-        }
-
-        public String getDrinkPercent() {
-            return drinkPercent;
-        }
-
-        public void setDrinkPercent(String drinkPercent) {
-            this.drinkPercent = drinkPercent;
-        }
     }
 }

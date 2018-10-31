@@ -18,6 +18,7 @@ public class Catalog {
     private Drink creation;
     private ArrayList<Ingredient> newIngredients;
     private static final int NO_ID = -1;
+    private Drink recipe;
 
     //make a singleton
     private static Catalog catalog;
@@ -35,43 +36,59 @@ public class Catalog {
 
         // mock this call for now
         // ingreds
-        Ingredient a = new Ingredient("oj", 3, "Ounces", 0, Ingredient.Category.MIXER);
-        Ingredient b = new Ingredient("vodka", 2, "Ounces", 1, Ingredient.Category.SPIRIT);
-        Ingredient c = new Ingredient("kahlua", 2, Ingredient.Category.LIQUEUR);
-        Ingredient d = new Ingredient("tomato juice", 3, Ingredient.Category.MIXER);
-        Ingredient e = new Ingredient("whiskey", 4, Ingredient.Category.SPIRIT);
-        Ingredient f = new Ingredient("coke", 5, Ingredient.Category.MIXER);
-        Ingredient g = new Ingredient("ginger beer", 6, Ingredient.Category.MIXER);
-        Ingredient h = new Ingredient("milk", 7, Ingredient.Category.MIXER);
-        Ingredient i = new Ingredient("lime wedge", 8, Ingredient.Category.GARNISH);
-        Ingredient j = new Ingredient("light rum", 9, Ingredient.Category.SPIRIT);
-        Ingredient k = new Ingredient("dark rum", 10, Ingredient.Category.SPIRIT);
-        Ingredient l = new Ingredient("passion fruite juice", 11, Ingredient.Category.MIXER);
-        Ingredient m = new Ingredient("pinapple juice", 12, Ingredient.Category.MIXER);
+        Ingredient f = new Ingredient("Coke", 0, Ingredient.Category.MIXER);
+        Ingredient h = new Ingredient("Cream", 1, "Ounces", 1, Ingredient.Category.MIXER);
+        Ingredient k = new Ingredient("Dark Rum", 2, Ingredient.Category.SPIRIT);
+        Ingredient g = new Ingredient("Ginger Beer", 5, "Ounces", 3, Ingredient.Category.MIXER);
+        Ingredient c = new Ingredient("Kahlua", 2, "Ounces", 4, Ingredient.Category.LIQUEUR);
+        Ingredient j = new Ingredient("Light Rum", 5, Ingredient.Category.SPIRIT);
+        Ingredient i = new Ingredient("Lime Wedge", 1, "Pieces", 6, Ingredient.Category.GARNISH);
+        Ingredient a = new Ingredient("Orange Juice", 3, "Ounces", 7, Ingredient.Category.MIXER);
+        Ingredient l = new Ingredient("Passion Fruit Juice", 8, Ingredient.Category.MIXER);
+        Ingredient m = new Ingredient("Pinapple Juice", 9, Ingredient.Category.MIXER);
+        Ingredient d = new Ingredient("Tomato Juice", 4, "Ounces", 10, Ingredient.Category.MIXER);
+        Ingredient b = new Ingredient("Vodka", 11, "Ounces", 11, Ingredient.Category.SPIRIT);
+        Ingredient e = new Ingredient("Whiskey", 12, Ingredient.Category.SPIRIT);
 
-
-        allIngredients.add(a);
-        allIngredients.add(b);
-        allIngredients.add(c);
-        allIngredients.add(d);
-        allIngredients.add(e);
         allIngredients.add(f);
-        allIngredients.add(g);
         allIngredients.add(h);
-        allIngredients.add(i);
-        allIngredients.add(j);
         allIngredients.add(k);
+        allIngredients.add(g);
+        allIngredients.add(c);
+        allIngredients.add(j);
+        allIngredients.add(i);
+        allIngredients.add(a);
         allIngredients.add(l);
         allIngredients.add(m);
+        allIngredients.add(d);
+        allIngredients.add(b);
+        allIngredients.add(e);
 
         ArrayList<Ingredient> ingredients = new ArrayList<>();
         ingredients.add(a);
         ingredients.add(b);
+        Drink z = new Drink("Srewdriver", ingredients, "Place ice in glass. Pour vodka " +
+                "over ice. Pour orange juice.", "Tumbler", 0);
 
-        Drink z = new Drink("srewdriver", ingredients, "", "", 0);
-//        Drink y = new Drink("bloody mary", new Ingredient[]{d, b});
-//        Drink x = new Drink("white russian", new Ingredient[]{b, c, h});
-//        Drink zz = new Drink("moscow mule", new Ingredient[]{b, g, i});
+        ArrayList<Ingredient> ingredients2 = new ArrayList<>();
+        ingredients2.add(d);
+        ingredients2.add(b);
+        Drink y = new Drink("Bloody Mary", ingredients2, "Optionally you can salt the rim of the glass. Add ice, and" +
+                "ingredients.", "Pint glass", 0);
+
+        ArrayList<Ingredient> ingredients3 = new ArrayList<>();
+        ingredients3.add(c);
+        ingredients3.add(h);
+        ingredients3.add(b);
+        Drink x = new Drink("White Russian", ingredients3);
+
+        ArrayList<Ingredient> ingredients4 = new ArrayList<>();
+        ingredients4.add(g);
+        ingredients4.add(i);
+        ingredients4.add(b);
+        Drink w = new Drink("Moscow Mule", ingredients4);
+
+
 //        Drink zy = new Drink("whiskey coke", new Ingredient[]{e, f});
 //        Drink zx = new Drink("chinh's special", new Ingredient[]{j, k, l, m});
 //        Drink xz = new Drink("srewdriver", new Ingredient[]{a, b});
@@ -93,16 +110,16 @@ public class Catalog {
 //        Drink ym = new Drink("bloody mary", new Ingredient[]{d, b});
 //        Drink mx = new Drink("white russian", new Ingredient[]{b, c, h});
 
-        creation = z;
+
 //        for (int i = 0; i < 1000; i++) {
 //            Drink newDrink = new Drink("newDrink", new Ingredient[]{a, b, c, d, e, f, g, h});
 //            allDrinks.add(newDrink);
 //        }
 
-//        allDrinks.add(z);
-//        allDrinks.add(y);
-//        allDrinks.add(x);
-//        allDrinks.add(zz);
+        allDrinks.add(z);
+        allDrinks.add(y);
+        allDrinks.add(x);
+        allDrinks.add(w);
 //        allDrinks.add(zy);
 //        allDrinks.add(zx);
 //        allDrinks.add(xz);
@@ -348,7 +365,7 @@ public class Catalog {
                                       String name, Ingredient.Category category) {
         Ingredient i;
 
-        if (ingredientId == NO_ID){
+        if (ingredientId == NO_ID) {
             i = new Ingredient(name, ingredientVolume, units, NO_ID, category);
             newIngredients.add(i);
         } else {
@@ -370,18 +387,93 @@ public class Catalog {
     ingredient inserted in the list.
  */
 
-    public void addCreation(){
+    public void addCreation() {
         allDrinks.add(creation);
 
         int prevIngredientsSize = allIngredients.size();
 
         allIngredients.addAll(newIngredients);
         // need to assign ids to new ingredients
-        for (int i = prevIngredientsSize; i < allIngredients.size(); i++){
+        for (int i = prevIngredientsSize; i < allIngredients.size(); i++) {
             allIngredients.get(i).setId(i);
         }
 
         creation = new Drink();
     }
 
+    public void setRecipe(String drinkName) {
+        for (Drink d : allDrinks) {
+            if (d.getName().equals(drinkName))
+                recipe = d;
+        }
+    }
+
+    public ArrayList<String> getRecipeIngredients() {
+
+        ArrayList<String> recipeIngredients = new ArrayList<>();
+
+        ArrayList<Ingredient> ingreds = recipe.getIngreds();
+        for (int i = 0; i < ingreds.size(); i++)
+            recipeIngredients.add(ingreds.get(i).getName());
+
+        return recipeIngredients;
+    }
+
+    public ArrayList<String> getRecipeVolumes() {
+
+        ArrayList<String> recipeVolumes = new ArrayList<>();
+
+        ArrayList<Ingredient> ingreds = recipe.getIngreds();
+        for (int i = 0; i < ingreds.size(); i++)
+            recipeVolumes.add(Double.toString(ingreds.get(i).getVolume()));
+
+        return recipeVolumes;
+    }
+
+    public ArrayList<String> getRecipeUnits() {
+
+        ArrayList<String> recipeUnits = new ArrayList<>();
+
+        ArrayList<Ingredient> ingreds = recipe.getIngreds();
+        for (int i = 0; i < ingreds.size(); i++)
+            recipeUnits.add(ingreds.get(i).getUnit());
+
+        return recipeUnits;
+    }
+
+    public String getRecipeInstructions() {
+        return recipe.getDirections();
+    }
+
+    public String getRecipeGlassType() {
+        return recipe.getGlassType();
+    }
+
+    public int getIngredientID(String newIngName) {
+        // format with capital first letter of every word
+        String formatIngredientName = upperCaseAllFirst(newIngName);
+
+        for (Ingredient i : allIngredients) {
+            if (i.getName().equals(formatIngredientName))
+                return i.getId();
+        }
+        return -1;
+    }
+
+    public static String upperCaseAllFirst(String value) {
+
+        char[] array = value.toCharArray();
+        // Uppercase first letter.
+        array[0] = Character.toUpperCase(array[0]);
+
+        // Uppercase all letters that follow a whitespace character.
+        for (int i = 1; i < array.length; i++) {
+            if (Character.isWhitespace(array[i - 1])) {
+                array[i] = Character.toUpperCase(array[i]);
+            }
+        }
+
+        // Result.
+        return new String(array);
+    }
 }

@@ -67,4 +67,19 @@ public class User {
     public void setFaves(ArrayList<Drink> faves) {
         this.faves = faves;
     }
+
+    public ArrayList<String> getMyIngredientNames(){
+        ArrayList<String> ingredientNames = new ArrayList<>();
+
+        for (Ingredient i: myIngreds)
+            ingredientNames.add(i.getName());
+
+        return ingredientNames;
+    }
+
+    public boolean isFavorite(String drinkName) {
+        for (Drink d: faves){
+            if (d.getName().equals(drinkName)) return true;
+        } return false;
+    }
 }

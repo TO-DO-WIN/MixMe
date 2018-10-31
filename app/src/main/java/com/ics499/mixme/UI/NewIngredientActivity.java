@@ -11,6 +11,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.ics499.mixme.R;
 import com.ics499.mixme.controller.Controller;
@@ -78,20 +79,31 @@ public class NewIngredientActivity extends AppCompatActivity implements View.OnC
                 break;
 
             case R.id.submitBtn:
-                intent.putExtra("is new ingredient", true);
-                intent.putExtra("ingredient_name", nameET.getText().toString());
+                // assure we don't already have ingredient
+                String newIngName = nameET.getText().toString();
 
-                // this probably want to change to stringExtra instead???
-                int selectedID = categoryRG.getCheckedRadioButtonId();
-                selectedRB = (RadioButton) findViewById(selectedID);
-                String catName = selectedRB.getText().toString();
-                Log.i("Debug", catName);
+                if (controller.getIngredientID(newIngName) >= 0) {
+                    Toast.makeText(this, "Ingredient already exist. Either go back to select ingredient or check spelling",
+                           Toast.LENGTH_LONG );
 
-                intent.putExtra("ingredient category", catName);
-                categoryRG.clearCheck();
-                intent.setClassName("com.ics499.mixme",
-                        "com.ics499.mixme.UI.IngredientVolumeActivity");
-                startActivity(intent);
+
+                } else {
+                    intent.putExtra("is new ingredient", true);
+                    intent.putExtra("ingredient_name", newIngName);
+
+
+                    // this probably want to change to stringExtra instead???
+                    int selectedID = categoryRG.getCheckedRadioButtonId();
+                    selectedRB = (RadioButton) findViewById(selectedID);
+                    String catName = selectedRB.getText().toString();
+                    Log.i("Debug", catName);
+
+                    intent.putExtra("ingredient category", catName);
+                    categoryRG.clearCheck();
+                    intent.setClassName("com.ics499.mixme",
+                            "com.ics499.mixme.UI.IngredientVolumeActivity");
+                    startActivity(intent);
+                }
                 break;
         }
     }
