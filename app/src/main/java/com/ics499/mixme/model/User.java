@@ -24,6 +24,16 @@ public class User {
     public static User getInstance(){
         if(user == null){
             user = new User();
+
+            // some data to use til fully functioning
+
+
+
+
+
+
+
+
         }
         return user;
     }

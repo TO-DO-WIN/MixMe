@@ -3,29 +3,24 @@ package com.ics499.mixme.UI;
 import android.content.Context;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
-import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.ics499.mixme.R;
-import com.ics499.mixme.controller.Controller;
 
 import java.util.List;
 
-public class CreateRecyclerViewAdapter extends
-        RecyclerView.Adapter<CreateRecyclerViewAdapter.ViewHolder> {
+public class RecipeRecyclerViewAdapter extends
+        RecyclerView.Adapter<RecipeRecyclerViewAdapter.ViewHolder> {
 
     private List<String> ingreds;
     private List<String> volumes;
     private List<String> units;
     private LayoutInflater inflater;
-    private ItemClickListener clickListener;
+    private RecipeRecyclerViewAdapter.ItemClickListener clickListener;
 //
 //    public SparseBooleanArray getItemStateArray() {
 //        return itemStateArray;
@@ -33,7 +28,7 @@ public class CreateRecyclerViewAdapter extends
 //
 //    private SparseBooleanArray itemStateArray = new SparseBooleanArray();
 
-    CreateRecyclerViewAdapter(Context context, List<String> ingreds, List<String> volumes,
+    RecipeRecyclerViewAdapter(Context context, List<String> ingreds, List<String> volumes,
                               List<String> units){
         this.inflater = LayoutInflater.from(context);
         this.ingreds = ingreds;
@@ -43,14 +38,14 @@ public class CreateRecyclerViewAdapter extends
 
     // Inflates the row layout from xml
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
+    public RecipeRecyclerViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
         View view = inflater.inflate(R.layout.create_row, parent, false);
-        return new ViewHolder(view);
+        return new RecipeRecyclerViewAdapter.ViewHolder(view);
     }
 
     // Binds each ingredient to a TextView
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position){
+    public void onBindViewHolder(RecipeRecyclerViewAdapter.ViewHolder holder, int position){
         String ingredient = ingreds.get(position);
         holder.ingredTextView.setText(ingredient);
         String volume = volumes.get(position);
@@ -78,7 +73,7 @@ public class CreateRecyclerViewAdapter extends
         ViewHolder(View itemView){
             super(itemView);
 
-           // row = (ConstraintLayout) itemView.findViewById(R.layout.create_row);
+            // row = (ConstraintLayout) itemView.findViewById(R.layout.create_row);
             ingredTextView = itemView.findViewById(R.id.ingredTextView);
             volumeTextView = itemView.findViewById(R.id.volumeTextView);
             unitsTextView = itemView.findViewById(R.id.unitsTextView);
@@ -86,14 +81,14 @@ public class CreateRecyclerViewAdapter extends
             itemView.setOnClickListener(this);
         }
 
-      //  void bind(int position){
-            // use the sparse boolean array to check
+        //  void bind(int position){
+        // use the sparse boolean array to check
 //            if (!itemStateArray.get(position, false)) {
 //                checkBox.setChecked(false);}
 //            else {
 //                checkBox.setChecked(true);
 //            }
-    //    }
+        //    }
 
         @Override
         public void onClick(View view){
@@ -121,7 +116,7 @@ public class CreateRecyclerViewAdapter extends
         return ingreds.get(id);
     }
 
-    void setClickListener(ItemClickListener itemClickListener){
+    void setClickListener(RecipeRecyclerViewAdapter.ItemClickListener itemClickListener){
         this.clickListener = itemClickListener;
     }
 

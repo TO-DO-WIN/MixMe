@@ -109,12 +109,13 @@ public class DrinkRecipeActivity extends AppCompatActivity implements LogToggle,
         RecyclerView rv = findViewById(R.id.rvIngredients);
         rv.setLayoutManager(new LinearLayoutManager(this));
 
-        // must pass a value for 
+        // must pass values for user/non-user, and for ingredient being in user's cabinet and or shopping list
+        // use different constructors for whether user or not, and within RecipeActivity or just in
+        // create activity
         adapter = new CreateRecyclerViewAdapter(this, recipeIngredients, recipeVolumes,
                 recipeUnits);
         adapter.setClickListener(this);
         rv.setAdapter(adapter);
-
     }
 
     @Override
@@ -127,6 +128,9 @@ public class DrinkRecipeActivity extends AppCompatActivity implements LogToggle,
             case R.id.logBtn:
                 logToggle(userName);
                 break;
+
+            case R.id.addFavesBtn:
+
 
             case R.id.searchNVBtn:
                 intent.setClassName("com.ics499.mixme",

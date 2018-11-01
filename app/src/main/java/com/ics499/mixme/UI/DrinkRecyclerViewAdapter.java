@@ -65,7 +65,6 @@ public class DrinkRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.
                 TextViewHolder tvh = (TextViewHolder) holder;
                 configureTextViewHolder(tvh, position);
                 break;
-
         }
 
 //        String drink = drinks.get(position);
