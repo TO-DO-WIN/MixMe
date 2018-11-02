@@ -217,4 +217,14 @@ public class Controller {
     public int getIngredientID(String newIngName) {
         return catalog.getIngredientID(newIngName);
     }
+
+    public void addFavorite(String drinkName) {user.addFavorite(drinkName); }
+
+    public ArrayList<String> getUserFavorites() {
+        ArrayList<String> drinkNames = new ArrayList<>();
+        for(Drink d: user.getFaves()){
+            drinkNames.add(d.getName());
+        }
+        return  drinkNames;
+    }
 }

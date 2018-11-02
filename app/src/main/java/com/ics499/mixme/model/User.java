@@ -92,4 +92,10 @@ public class User {
             if (d.getName().equals(drinkName)) return true;
         } return false;
     }
+
+    public void addFavorite(String drinkName) {
+        Catalog catalog = Catalog.getInstance();
+        Drink d = catalog.getDrinkByName(drinkName);
+        faves.add(d);
+    }
 }

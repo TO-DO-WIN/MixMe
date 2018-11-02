@@ -21,7 +21,7 @@ import java.util.ArrayList;
 public class DrinksFoundActivity extends AppCompatActivity implements LogToggle,
         View.OnClickListener, DrinkRecyclerViewAdapter.ItemClickListener {
 
-    TextView greeting, canMake, canAlmostMake;
+    TextView greeting, canMake;
     Button logBtn;
     String userName;
     Button searchDrinksBtn, createDrinkBtn, favesBtn, shoppingBtn, cabinetBtn, randomBtn;

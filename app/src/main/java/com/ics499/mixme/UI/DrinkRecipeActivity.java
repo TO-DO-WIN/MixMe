@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.ics499.mixme.R;
 import com.ics499.mixme.controller.Controller;
@@ -30,6 +31,8 @@ public class DrinkRecipeActivity extends AppCompatActivity implements LogToggle,
     CreateRecyclerViewAdapter adapter;
 
     Button addFavesBtn, rateBtn;
+
+    String drinkName;
 
 
     @Override
@@ -79,7 +82,7 @@ public class DrinkRecipeActivity extends AppCompatActivity implements LogToggle,
         controller = Controller.getInstance();
 
         Intent intent = getIntent();
-        String drinkName = intent.getStringExtra("drink");
+        drinkName = intent.getStringExtra("drink");
         controller.setRecipe(drinkName);
 
         ArrayList<String> recipeIngredients = controller.getRecipeIngredients();
@@ -130,7 +133,9 @@ public class DrinkRecipeActivity extends AppCompatActivity implements LogToggle,
                 break;
 
             case R.id.addFavesBtn:
-
+                controller.addFavorite(drinkName);
+                Toast.makeText(this,"Drink added to your favorites", Toast.LENGTH_LONG).show();
+                break;
 
             case R.id.searchNVBtn:
                 intent.setClassName("com.ics499.mixme",

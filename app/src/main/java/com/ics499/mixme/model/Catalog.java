@@ -476,4 +476,14 @@ public class Catalog {
         // Result.
         return new String(array);
     }
+
+   public Drink getDrinkByName(String drinkName) {
+        for(Drink d: allDrinks){
+            if(drinkName.equals(d.getName()))
+                return d;
+        }
+        return null;
+
+
+   }
 }
