@@ -30,6 +30,9 @@ public class CabinetActivity extends AppCompatActivity implements LogToggle, Vie
     Button addIngredsBtn;
     Controller controller;
 
+    int posOfText;
+    ArrayList<String> items = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,11 +82,11 @@ public class CabinetActivity extends AppCompatActivity implements LogToggle, Vie
 
         controller = Controller.getInstance();
         ArrayList<Integer> userIngredIDs = controller.getUserIngredientIDs();
-        ArrayList<String> items = new ArrayList<>();
+
         items.addAll(controller.getUserIngredients());
         ArrayList<String> makableNames = new ArrayList<>();
         String text = "You can make these drinks.";
-        int posOfText = items.size();
+        posOfText = items.size();
         controller.searchDrinks(userIngredIDs, makableNames);
         items.add(text);
         items.addAll(makableNames);
@@ -177,6 +180,15 @@ public class CabinetActivity extends AppCompatActivity implements LogToggle, Vie
 
     @Override
     public void onItemClick(View view, int position) {
+        Intent intent = new Intent();
+
+        if (position < posOfText){
+            controller.removeIngredientFromCabinet(items.get(position));
+            intent.setClassName("com.ics499.mixme",
+                    "com.ics499.mixme.UI.CabinetActivity");
+            startActivity(intent);
+
+        }
 
     }
 }

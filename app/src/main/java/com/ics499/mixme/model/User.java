@@ -120,4 +120,13 @@ public class User {
             }
         }
     }
+
+    public void removeIngredientFromCabinet(String ingredName) {
+        for (Ingredient i: myIngreds){
+            if (i.getName().equals(ingredName)) {
+                myIngreds.remove(i);
+                return;
+            }
+        }
+    }
 }

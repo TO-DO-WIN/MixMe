@@ -101,10 +101,13 @@ public class CabinetRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVie
     public class IngredViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         TextView textView;
+        Button button;
 
         IngredViewHolder(View itemView) {
             super(itemView);
             textView = itemView.findViewById(R.id.ingredientTV);
+            button = itemView.findViewById(R.id.removeBtn);
+            button.setOnClickListener(this);
         }
 
         public TextView getTextView() {

@@ -246,4 +246,8 @@ public class Controller {
     public void addIngredientsToCabinet(SparseBooleanArray sba) {
         user.addIngredientsToCabinet(sba);
     }
+
+    public void removeIngredientFromCabinet(String ingredName) {
+        user.removeIngredientFromCabinet(ingredName);
+    }
 }
