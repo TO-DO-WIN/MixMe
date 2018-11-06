@@ -1,61 +1,47 @@
 package com.ics499.mixme.UI;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.SparseBooleanArray;
 import android.view.View;
 import android.widget.Button;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.ics499.mixme.R;
 import com.ics499.mixme.controller.Controller;
+import com.ics499.mixme.model.Ingredient;
 import com.ics499.mixme.utilities.LogToggle;
 import com.ics499.mixme.utilities.SharedPrefsManager;
 
 import java.util.ArrayList;
 
-public class CabinetActivity extends AppCompatActivity implements LogToggle, View.OnClickListener,
-        CabinetRecyclerViewAdapter.ItemClickListener {
+public class AddIngredientsToCabinetActivity extends AppCompatActivity implements LogToggle, View.OnClickListener,
+        IngredientRecyclerViewAdapter.ItemClickListener {
 
     TextView greeting;
     Button logBtn;
     String userName;
-    Button searchDrinksBtn, createDrinkBtn, favesBtn, shoppingBtn, cabinetBtn, randomBtn;
+    SearchView searchView;
+    Button clearBtn, submitBtn;
+    Button createDrinkBtn, favesBtn, shoppingBtn, cabinetBtn, randomBtn;
 
-    TextView ingredsTV;
-    CabinetRecyclerViewAdapter adapter;
-    Button addIngredsBtn;
+    IngredientRecyclerViewAdapter adapter;
     Controller controller;
+    SparseBooleanArray sba;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        userName = SharedPrefsManager.getUserName(CabinetActivity.this);
-
-        if (userName == null) {
-
-            // This should never happen...shouldn't be in Cabinet without logged in
-            Intent intent = new Intent();
-            intent.setClassName("com.ics499.mixme",
-                    "com.ics499.mixme.UI.LogInActivity");
-            startActivity(intent);
-        }
-
-        setContentView(R.layout.activity_cabinet);
+        setContentView(R.layout.activity_add_ingredient_to_cabinet);
 
         greeting = (TextView) findViewById(R.id.greeting);
         greeting.setText(userName);
-
         logBtn = (Button) findViewById(R.id.logBtn);
         logBtn.setText("Log Out");
-        logBtn.setOnClickListener(this);
-
-        searchDrinksBtn = (Button) findViewById(R.id.searchNVBtn);
-        searchDrinksBtn.setOnClickListener(this);
 
         createDrinkBtn = (Button) findViewById(R.id.createNVBtn);
         createDrinkBtn.setOnClickListener(this);
@@ -72,48 +58,39 @@ public class CabinetActivity extends AppCompatActivity implements LogToggle, Vie
         randomBtn = (Button) findViewById(R.id.randomNVBtn);
         randomBtn.setOnClickListener(this);
 
-        addIngredsBtn = (Button) findViewById(R.id.addIngredientBtn);
-        addIngredsBtn.setOnClickListener(this);
+        logBtn.setOnClickListener(this);
 
-        ingredsTV = (TextView) findViewById(R.id.ingredientsTV);
+        searchView = (SearchView) findViewById(R.id.searchView);
+
+        clearBtn = (Button) findViewById(R.id.clearBtn);
+        clearBtn.setOnClickListener(this);
+
+        submitBtn = (Button) findViewById(R.id.submitBtn);
+        submitBtn.setOnClickListener(this);
 
         controller = Controller.getInstance();
-        ArrayList<Integer> userIngredIDs = controller.getUserIngredientIDs();
-        ArrayList<String> items = new ArrayList<>();
-        items.addAll(controller.getUserIngredients());
-        ArrayList<String> makableNames = new ArrayList<>();
-        String text = "You can make these drinks.";
-        int posOfText = items.size();
-        controller.searchDrinks(userIngredIDs, makableNames);
-        items.add(text);
-        items.addAll(makableNames);
+        ArrayList<String> ingredientList = controller.getIngredientList();
+        sba = new SparseBooleanArray();
 
-        // no need to use recylerView if no ingredients in cabinet
-        // display a text instead.
-        if (posOfText < 1){
-            ingredsTV.setText("You do not have any ingredients, and therefore you also cannot make any drinks.");
-        }
-        else {
-            RecyclerView rv = findViewById(R.id.cabinetRV);
-            rv.setLayoutManager(new LinearLayoutManager(this));
-            adapter = new CabinetRecyclerViewAdapter(this, items, posOfText);
-            adapter.setClickListener(this);
-            rv.setAdapter(adapter);
-        }
+        RecyclerView rv = findViewById(R.id.rvIngredients);
+        rv.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new IngredientRecyclerViewAdapter(this, ingredientList);
+        adapter.setClickListener(this);
+        rv.setAdapter(adapter);
     }
 
     @Override
     public void onClick(View v) {
-
         Intent intent = new Intent();
 
-        switch (v.getId()) {
+        switch (v.getId()){
 
             case R.id.logBtn:
                 logToggle(userName);
                 break;
 
             case R.id.searchNVBtn:
+
                 intent.setClassName("com.ics499.mixme",
                         "com.ics499.mixme.UI.SearchActivity");
                 startActivity(intent);
@@ -148,19 +125,32 @@ public class CabinetActivity extends AppCompatActivity implements LogToggle, Vie
                         "com.ics499.mixme.UI.RandomActivity");
                 startActivity(intent);
                 break;
-            case R.id.addIngredientBtn:
+            case R.id.clearBtn:
+                break;
+            case R.id.submitBtn:
+                controller.addIngredientsToCabinet(sba);
                 intent.setClassName("com.ics499.mixme",
-                        "com.ics499.mixme.UI.AddIngredientsToCabinetActivity");
+                        "com.ics499.mixme.UI.CabinetActivity");
                 startActivity(intent);
                 break;
         }
+
+    }
+
+    @Override
+    public void onItemClick(View view, int position) {
+        if (sba.get(position)) {
+            sba.put(position, false);
+        } else {
+            sba.put(position, true);
+        }
+
     }
 
     @Override
     public void logToggle(String userName) {
-
         if (userName != null) {
-            SharedPrefsManager.setUserName(CabinetActivity.this, null);
+            SharedPrefsManager.setUserName(AddIngredientsToCabinetActivity.this, null);
             Intent intent = new Intent();
             intent.setClassName("com.ics499.mixme",
                     "com.ics499.mixme.UI.SearchActivity");
@@ -173,10 +163,6 @@ public class CabinetActivity extends AppCompatActivity implements LogToggle, Vie
                     "com.ics499.mixme.UI.LoginActivity");
             startActivity(intent);
         }
-    }
-
-    @Override
-    public void onItemClick(View view, int position) {
 
     }
 }

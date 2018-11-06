@@ -38,7 +38,6 @@ public class SearchActivity extends AppCompatActivity implements LogToggle,
         super.onCreate(savedInstanceState);
 
 
-
         userName = SharedPrefsManager.getUserName(SearchActivity.this);
 
         if (userName != null) {
@@ -62,8 +61,7 @@ public class SearchActivity extends AppCompatActivity implements LogToggle,
 
             cabinetBtn = (Button) findViewById(R.id.cabinetNVBtn);
             cabinetBtn.setOnClickListener(this);
-        }
-        else {
+        } else {
             setContentView(R.layout.search_guest);
             logBtn = (Button) findViewById(R.id.logBtn);
 
@@ -95,7 +93,7 @@ public class SearchActivity extends AppCompatActivity implements LogToggle,
 
     @Override
     public void logToggle(String userName) {
-        if (userName != null){
+        if (userName != null) {
             SharedPrefsManager.setUserName(SearchActivity.this, null);
             greeting.setText("Hello, Guest");
             logBtn.setText("Log In");
@@ -112,7 +110,7 @@ public class SearchActivity extends AppCompatActivity implements LogToggle,
 
         Intent intent = new Intent();
 
-        switch (v.getId()){
+        switch (v.getId()) {
 
             case R.id.logBtn:
                 logToggle(userName);
@@ -172,8 +170,8 @@ public class SearchActivity extends AppCompatActivity implements LogToggle,
 
         if (sba.get(position)) {
             sba.put(position, false);
-        }
-        else{
+        } else {
             sba.put(position, true);
-    }}
+        }
+    }
 }

@@ -105,6 +105,12 @@ public class Controller {
 
     }
 
+    public void searchDrinks(ArrayList<Integer> userIngredIDs, ArrayList<String> makableNames) {
+        catalog.setWorkingIngredientIDs(userIngredIDs);
+        catalog.searchDrinks();
+        makableNames.addAll(catalog.getMakableNames());
+    }
+
     public void createDrink(String drinkName, ArrayList<String> ingredientNames, ArrayList<String> ingredientVolumes,
                             ArrayList<String> ingredientUnits, ArrayList<Integer> ingredientIDs,
                             String directions, String glassType, ArrayList<String> ingredientCats) {
@@ -226,5 +232,18 @@ public class Controller {
             drinkNames.add(d.getName());
         }
         return  drinkNames;
+    }
+
+    public ArrayList<String> getUserIngredients() {
+        return user.getMyIngredientNames();
+    }
+
+    public ArrayList<Integer> getUserIngredientIDs() {
+        return user.getMyIngredientIDs();
+    }
+
+
+    public void addIngredientsToCabinet(SparseBooleanArray sba) {
+        user.addIngredientsToCabinet(sba);
     }
 }

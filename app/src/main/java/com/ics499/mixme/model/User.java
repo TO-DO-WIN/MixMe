@@ -1,5 +1,7 @@
 package com.ics499.mixme.model;
 
+import android.util.SparseBooleanArray;
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
@@ -10,6 +12,7 @@ public class User {
     private ArrayList<Ingredient> shoppingLS = new ArrayList<>();
     private ArrayList<Ingredient> shoppingGS = new ArrayList<>();
     private ArrayList<Drink> faves = new ArrayList<>();
+    Catalog catalog = Catalog.getInstance();
 
     // make a singleton
     private static User user;
@@ -87,6 +90,15 @@ public class User {
         return ingredientNames;
     }
 
+    public ArrayList<Integer> getMyIngredientIDs(){
+        ArrayList<Integer> ingredientIDs = new ArrayList<>();
+
+        for (Ingredient i: myIngreds)
+            ingredientIDs.add(i.getId());
+
+        return ingredientIDs;
+    }
+
     public boolean isFavorite(String drinkName) {
         for (Drink d: faves){
             if (d.getName().equals(drinkName)) return true;
@@ -94,8 +106,18 @@ public class User {
     }
 
     public void addFavorite(String drinkName) {
-        Catalog catalog = Catalog.getInstance();
+
         Drink d = catalog.getDrinkByName(drinkName);
         faves.add(d);
+    }
+
+    public void addIngredientsToCabinet(SparseBooleanArray sba){
+        ArrayList<Ingredient> allIngreds = new ArrayList<>();
+        allIngreds = catalog.getAllIngredients();
+        for (int i = 0; i < allIngreds.size(); i++){
+            if (sba.get(i)){
+                myIngreds.add(allIngreds.get(i));
+            }
+        }
     }
 }
