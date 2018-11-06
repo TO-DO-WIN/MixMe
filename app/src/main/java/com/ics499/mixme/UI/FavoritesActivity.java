@@ -5,51 +5,55 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.ics499.mixme.R;
 import com.ics499.mixme.controller.Controller;
-import com.ics499.mixme.model.Drink;
+import com.ics499.mixme.model.User;
 import com.ics499.mixme.utilities.LogToggle;
 import com.ics499.mixme.utilities.SharedPrefsManager;
 
 import java.util.ArrayList;
 
-public class DrinksFoundActivity extends AppCompatActivity implements LogToggle,
-        View.OnClickListener, DrinkRecyclerViewAdapter.ItemClickListener {
+public class FavoritesActivity extends AppCompatActivity implements LogToggle, View.OnClickListener,
+        FavoritesRecyclerViewAdapter.ItemClickListener {
 
-    TextView greeting, canMake;
+    TextView greeting, favoritesTV;
     Button logBtn;
     String userName;
     Button searchDrinksBtn, createDrinkBtn, favesBtn, shoppingBtn, cabinetBtn, randomBtn;
 
-    DrinkRecyclerViewAdapter adapter;
+    FavoritesRecyclerViewAdapter adapter;
     Controller controller;
-    ArrayList<Object> drinkObjects = new ArrayList<>();
+    ArrayList<String> drinks = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
 
-        userName = SharedPrefsManager.getUserName(DrinksFoundActivity.this);
+        userName = SharedPrefsManager.getUserName(FavoritesActivity.this);
 
-        if (userName != null) {
-            setContentView(R.layout.activity_drinks_found);
-            greeting = (TextView) findViewById(R.id.greeting);
-            greeting.setText(userName);
-            logBtn = (Button) findViewById(R.id.logBtn);
-            logBtn.setText("Log Out");
+        if (userName == null) {
 
-        } else {
-            setContentView(R.layout.drinks_found_guest);
-            logBtn = (Button) findViewById(R.id.logBtn);
+            // This should never happen...shouldn't be in Favorites without logged in
+            Intent intent = new Intent();
+            intent.setClassName("com.ics499.mixme",
+                    "com.ics499.mixme.UI.LogInActivity");
+            startActivity(intent);
         }
 
+        setContentView(R.layout.activity_favorites);
+
+        greeting = (TextView) findViewById(R.id.greeting);
+        greeting.setText(userName);
+
+        logBtn = (Button) findViewById(R.id.logBtn);
+        logBtn.setText("Log Out");
         logBtn.setOnClickListener(this);
+
+        favoritesTV = (TextView) findViewById(R.id.favorites);
 
         searchDrinksBtn = (Button) findViewById(R.id.searchNVBtn);
         searchDrinksBtn.setOnClickListener(this);
@@ -69,35 +73,20 @@ public class DrinksFoundActivity extends AppCompatActivity implements LogToggle,
         randomBtn = (Button) findViewById(R.id.randomNVBtn);
         randomBtn.setOnClickListener(this);
 
-        ArrayList<String> makables = getIntent().getStringArrayListExtra("makableNames");
-        ArrayList<String> nearMakables = getIntent().getStringArrayListExtra("nearMakableNames");
-        ArrayList<String> nearMakableMatch = getIntent().getStringArrayListExtra("nearMakableMatch");
+        controller = Controller.getInstance();
+        ArrayList<String> favorites = controller.getUserFavorites();
 
-        canMake = (TextView) findViewById(R.id.canMake);
-
-        if(makables.size()==0){
-            canMake.setText("Sorry, there are no drinks you can make with the ingredients selected");
+        if(favorites.size() == 0){
+            favoritesTV.setText("You do not have any favorites");
         }
-
-
-        for (String d: makables){
-            drinkObjects.add(new DrinkForAdapter(d, "100"));
-        }
-        drinkObjects.add("You can almost make these drinks");
-        for (int i = 0; i < nearMakables.size(); i++){
-            drinkObjects.add(new DrinkForAdapter(nearMakables.get(i), nearMakableMatch.get(i)));
-        }
-
 
         RecyclerView rv = findViewById(R.id.rvDrinks);
         rv.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new DrinkRecyclerViewAdapter(this, drinkObjects);
+        adapter = new FavoritesRecyclerViewAdapter(this, favorites);
         adapter.setClickListener(this);
         rv.setAdapter(adapter);
+        }
 
-    }
-
-    @Override
     public void onClick(View v) {
         Intent intent = new Intent();
 
@@ -146,32 +135,25 @@ public class DrinksFoundActivity extends AppCompatActivity implements LogToggle,
     }
 
     @Override
-    public void onItemClick(View view, int position) {
-
-        // probably need to handle for clicking on the text item which is not a DrinkForAdapter
-
-        DrinkForAdapter drink = (DrinkForAdapter) drinkObjects.get(position);
-        String nameString = drink.getDrinkName();
-
-        Intent intent = new Intent();
-        intent.putExtra("drink", nameString);
-        intent.setClassName("com.ics499.mixme",
-                "com.ics499.mixme.UI.DrinkRecipeActivity");
-        startActivity(intent);
-
-    }
-
-    @Override
     public void logToggle(String userName) {
-        if (userName != null){
-            SharedPrefsManager.setUserName(DrinksFoundActivity.this, null);
-            logBtn.setText("Log In");
+        if (userName != null) {
+            SharedPrefsManager.setUserName(FavoritesActivity.this, null);
+            Intent intent = new Intent();
+            intent.setClassName("com.ics499.mixme",
+                    "com.ics499.mixme.UI.SearchActivity");
+            startActivity(intent);
         } else {
+
+            // This should never happen...shouldn't be in Favorites without logged in
             Intent intent = new Intent();
             intent.setClassName("com.ics499.mixme",
                     "com.ics499.mixme.UI.LoginActivity");
             startActivity(intent);
         }
+    }
+
+    @Override
+    public void onItemClick(View view, int position) {
 
     }
 
