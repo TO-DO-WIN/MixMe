@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 public class Catalog {
 
@@ -486,4 +487,11 @@ public class Catalog {
 
 
    }
+
+    public String getRandomDrink() {
+
+        Random random = new Random();
+        int drinkNumber = random.nextInt(allDrinks.size());
+        return allDrinks.get(drinkNumber).getName();
+    }
 }

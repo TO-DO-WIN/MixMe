@@ -8,15 +8,19 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.ics499.mixme.R;
+import com.ics499.mixme.controller.Controller;
 import com.ics499.mixme.utilities.LogToggle;
 import com.ics499.mixme.utilities.SharedPrefsManager;
+
 
 public class RandomActivity extends AppCompatActivity implements LogToggle, View.OnClickListener {
 
     TextView greeting;
     Button logBtn;
     String userName;
-    Button searchDrinksBtn, createDrinkBtn, favesBtn, shoppingBtn, cabinetBtn, randomBtn;
+    Button searchDrinksBtn, createDrinkBtn, favesBtn, shoppingBtn, cabinetBtn, randomBtn, findRandomDrinkBtn;
+    Controller controller;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +64,12 @@ public class RandomActivity extends AppCompatActivity implements LogToggle, View
 
         randomBtn = (Button) findViewById(R.id.randomNVBtn);
         randomBtn.setOnClickListener(this);
+
+        findRandomDrinkBtn = (Button) findViewById(R.id.findRandomDrink);
+        findRandomDrinkBtn.setOnClickListener(this);
+
+        controller = Controller.getInstance();
+
     }
 
     public void onClick(View v) {
@@ -69,6 +79,15 @@ public class RandomActivity extends AppCompatActivity implements LogToggle, View
 
             case R.id.logBtn:
                 logToggle(userName);
+                break;
+
+            case R.id.findRandomDrink:
+                String nameString = controller.getRandomDrink();
+
+                intent.putExtra("drink", nameString);
+                intent.setClassName("com.ics499.mixme",
+                        "com.ics499.mixme.UI.DrinkRecipeActivity");
+                startActivity(intent);
                 break;
 
             case R.id.searchNVBtn:
