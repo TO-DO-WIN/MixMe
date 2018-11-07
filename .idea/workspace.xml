@@ -39,8 +39,8 @@
       <file leaf-file-name="Controller.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ics499/mixme/controller/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="356">
-              <caret line="250" column="53" selection-start-line="250" selection-start-column="53" selection-end-line="250" selection-end-column="53" />
+            <state relative-caret-position="365">
+              <caret line="262" column="57" selection-start-line="262" selection-start-column="57" selection-end-line="262" selection-end-column="57" />
               <folding>
                 <element signature="e#7696#7697#0" expanded="true" />
                 <element signature="e#7746#7747#0" expanded="true" />
@@ -52,8 +52,38 @@
       <file leaf-file-name="User.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ics499/mixme/model/User.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="356">
-              <caret line="127" column="23" selection-start-line="127" selection-start-column="23" selection-end-line="127" selection-end-column="23" />
+            <state relative-caret-position="382">
+              <caret line="45" column="26" selection-start-line="45" selection-start-column="26" selection-end-line="45" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Ingredient.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ics499/mixme/model/Ingredient.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-527">
+              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ShoppingRecyclerViewAdapter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ics499/mixme/UI/ShoppingRecyclerViewAdapter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-467">
+              <caret line="76" selection-start-line="76" selection-end-line="76" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ShoppingListActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ics499/mixme/UI/ShoppingListActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="235">
+              <caret line="90" column="24" selection-start-line="90" selection-start-column="24" selection-end-line="90" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -61,35 +91,50 @@
       <file leaf-file-name="Catalog.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ics499/mixme/model/Catalog.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-34">
-              <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+            <state relative-caret-position="408">
+              <caret line="50" column="81" selection-start-line="46" selection-start-column="8" selection-end-line="50" selection-end-column="81" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CabinetActivity.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CabinetActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ics499/mixme/UI/CabinetActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="373">
-              <caret line="181" column="54" lean-forward="true" selection-start-line="181" selection-start-column="54" selection-end-line="181" selection-end-column="54" />
+            <state relative-caret-position="221">
+              <caret line="97" column="9" selection-start-line="97" selection-start-column="9" selection-end-line="97" selection-end-column="9" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DrinkRecyclerViewAdapter.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ics499/mixme/UI/DrinkRecyclerViewAdapter.java">
+      <file leaf-file-name="activity_shopping.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_shopping.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-748">
-              <caret line="40" column="55" selection-start-line="40" selection-start-column="55" selection-end-line="40" selection-end-column="55" />
+            <state relative-caret-position="272">
+              <caret line="16" selection-start-line="16" selection-end-line="16" />
             </state>
+          </provider>
+          <provider editor-type-id="android-designer2">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="activity_cabinet.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_cabinet.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="172">
+              <caret line="12" column="43" selection-start-line="11" selection-start-column="8" selection-end-line="12" selection-end-column="43" />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer2">
+            <state />
           </provider>
         </entry>
       </file>
       <file leaf-file-name="CabinetRecyclerViewAdapter.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ics499/mixme/UI/CabinetRecyclerViewAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="87">
-              <caret line="109" column="42" selection-start-line="109" selection-start-column="42" selection-end-line="109" selection-end-column="42" />
+            <state relative-caret-position="518">
+              <caret line="187" column="1" selection-start-line="14" selection-start-column="40" selection-end-line="187" selection-end-column="1" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -2376,10 +2421,13 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_add_ingredient_to_cabinet.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/ics499/mixme/UI/AddIngredientsToCabinetActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/cab_ingredient_row.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/ics499/mixme/controller/Controller.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/ics499/mixme/model/User.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/ics499/mixme/UI/CabinetRecyclerViewAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/ics499/mixme/UI/CabinetActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/ics499/mixme/UI/ShoppingRecyclerViewAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/ics499/mixme/UI/ShoppingListActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/ics499/mixme/controller/Controller.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/ics499/mixme/model/User.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_shopping.xml" />
       </list>
     </option>
   </component>
@@ -2412,6 +2460,13 @@
               <item name="app" type="feadf853:AndroidModuleNode" />
               <item name="java" type="edd41e36:AndroidSourceTypeNode" />
               <item name="mixme" type="cbb59c9e:AndroidPsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MixMe" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="mixme" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="MixMe" type="1abcf292:AndroidViewProjectNode" />
@@ -2589,17 +2644,17 @@
       <window_info anchor="bottom" id="Run" order="2" weight="0.112769485" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info active="true" anchor="bottom" id="Logcat" order="7" visible="true" weight="0.0" />
+      <window_info anchor="bottom" id="Logcat" order="7" visible="true" weight="0.05472637" />
       <window_info id="Captures" order="2" weight="0.25" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1707132" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1707132" />
       <window_info anchor="bottom" id="Build" order="7" weight="0.3283582" />
       <window_info anchor="right" id="Gradle" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Device File Explorer" order="3" side_tool="true" />
       <window_info anchor="right" id="Theme Preview" order="3" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.67330015" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.85406303" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -2647,7 +2702,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="13" />
+      <option name="time" value="14" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -2825,27 +2880,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_cabinet.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="697">
-          <caret line="41" column="55" selection-start-line="41" selection-start-column="55" selection-end-line="41" selection-end-column="55" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ics499/mixme/UI/DrinksFoundActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1899">
           <caret line="21" column="73" selection-start-line="21" selection-start-column="30" selection-end-line="21" selection-end-column="73" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ics499/mixme/UI/DrinkRecipeActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-850">
-          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -2931,41 +2969,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ics499/mixme/model/Catalog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-34">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ics499/mixme/model/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="356">
-          <caret line="127" column="23" selection-start-line="127" selection-start-column="23" selection-end-line="127" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ics499/mixme/controller/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="356">
-          <caret line="250" column="53" selection-start-line="250" selection-start-column="53" selection-end-line="250" selection-end-column="53" />
-          <folding>
-            <element signature="e#7696#7697#0" expanded="true" />
-            <element signature="e#7746#7747#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/cab_ingredient_row.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="17" column="35" selection-start-line="17" selection-start-column="35" selection-end-line="17" selection-end-column="35" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ics499/mixme/UI/DrinkRecyclerViewAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-748">
@@ -2973,10 +2976,76 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ics499/mixme/UI/DrinkRecipeActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-697">
+          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ics499/mixme/UI/CabinetRecyclerViewAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="87">
-          <caret line="109" column="42" selection-start-line="109" selection-start-column="42" selection-end-line="109" selection-end-column="42" />
+        <state relative-caret-position="518">
+          <caret line="187" column="1" selection-start-line="14" selection-start-column="40" selection-end-line="187" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ics499/mixme/controller/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="365">
+          <caret line="262" column="57" selection-start-line="262" selection-start-column="57" selection-end-line="262" selection-end-column="57" />
+          <folding>
+            <element signature="e#7696#7697#0" expanded="true" />
+            <element signature="e#7746#7747#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ics499/mixme/model/Ingredient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-527">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ics499/mixme/model/Catalog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="50" column="81" selection-start-line="46" selection-start-column="8" selection-end-line="50" selection-end-column="81" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ics499/mixme/model/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="382">
+          <caret line="45" column="26" selection-start-line="45" selection-start-column="26" selection-end-line="45" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/cab_ingredient_row.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="274">
+          <caret line="17" column="35" lean-forward="true" selection-start-line="17" selection-start-column="35" selection-end-line="17" selection-end-column="35" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ics499/mixme/UI/ShoppingListActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="235">
+          <caret line="90" column="24" selection-start-line="90" selection-start-column="24" selection-end-line="90" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ics499/mixme/UI/ShoppingRecyclerViewAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-467">
+          <caret line="76" selection-start-line="76" selection-end-line="76" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -2985,9 +3054,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ics499/mixme/UI/CabinetActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="373">
-          <caret line="181" column="54" lean-forward="true" selection-start-line="181" selection-start-column="54" selection-end-line="181" selection-end-column="54" />
+        <state relative-caret-position="221">
+          <caret line="97" column="9" selection-start-line="97" selection-start-column="9" selection-end-line="97" selection-end-column="9" />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_cabinet.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="172">
+          <caret line="12" column="43" selection-start-line="11" selection-start-column="8" selection-end-line="12" selection-end-column="43" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_shopping.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
       </provider>
     </entry>
   </component>

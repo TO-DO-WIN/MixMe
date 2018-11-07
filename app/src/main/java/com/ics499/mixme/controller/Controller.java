@@ -14,6 +14,7 @@ import com.ics499.mixme.model.User;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collection;
 
 import static android.support.v4.content.ContextCompat.startActivity;
 
@@ -249,5 +250,19 @@ public class Controller {
 
     public void removeIngredientFromCabinet(String ingredName) {
         user.removeIngredientFromCabinet(ingredName);
+    }
+
+    public Collection<? extends String> getUserShoppingLS() {
+        ArrayList<String> shoppingLS = new ArrayList<>();
+        for (Ingredient i: user.getShoppingLS())
+            shoppingLS.add(i.getName());
+        return shoppingLS;
+    }
+
+    public Collection<? extends String> getUserShoppingGS() {
+        ArrayList<String> shoppingGS = new ArrayList<>();
+        for (Ingredient i: user.getShoppingGS())
+            shoppingGS.add(i.getName());
+        return shoppingGS;
     }
 }

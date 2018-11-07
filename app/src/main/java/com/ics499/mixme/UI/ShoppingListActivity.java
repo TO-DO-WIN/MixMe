@@ -3,20 +3,34 @@ package com.ics499.mixme.UI;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.ics499.mixme.R;
+import com.ics499.mixme.controller.Controller;
 import com.ics499.mixme.utilities.LogToggle;
 import com.ics499.mixme.utilities.SharedPrefsManager;
 
-public class ShoppingListActivity extends AppCompatActivity implements LogToggle, View.OnClickListener {
+import java.util.ArrayList;
+
+public class ShoppingListActivity extends AppCompatActivity implements LogToggle, View.OnClickListener,
+        ShoppingRecyclerViewAdapter.ItemClickListener {
 
     TextView greeting;
     Button logBtn;
     String userName;
     Button searchDrinksBtn, createDrinkBtn, favesBtn, shoppingBtn, cabinetBtn, randomBtn;
+
+    TextView ingredsTV;
+    ShoppingRecyclerViewAdapter adapter;
+    Button addIngredsBtn;
+    Controller controller;
+
+    int posOfText;
+    ArrayList<String> items = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +74,35 @@ public class ShoppingListActivity extends AppCompatActivity implements LogToggle
 
         randomBtn = (Button) findViewById(R.id.randomNVBtn);
         randomBtn.setOnClickListener(this);
+
+        addIngredsBtn = (Button) findViewById(R.id.addIngredientBtn);
+        addIngredsBtn.setOnClickListener(this);
+
+        ingredsTV = (TextView) findViewById(R.id.ingredientsTV);
+
+        controller = Controller.getInstance();
+        //ArrayList<Integer> userIngredIDs = controller.getUserIngredientIDs();
+
+        items.addAll(controller.getUserShoppingLS());
+        //ArrayList<String> makableNames = new ArrayList<>();
+        String text = "Grocery Store List:";
+        posOfText = items.size();
+        //controller.searchDrinks(userIngredIDs, makableNames);
+        items.add(text);
+        items.addAll(controller.getUserShoppingGS());
+
+        // no need to use recylerView if no ingredients in cabinet
+        // display a text instead.
+        if (posOfText < 1){
+            ingredsTV.setText("You do not have any ingredients in your shopping list.");
+        }
+        else {
+            RecyclerView rv = findViewById(R.id.shoppingRV);
+            rv.setLayoutManager(new LinearLayoutManager(this));
+            adapter = new ShoppingRecyclerViewAdapter(this, items, posOfText);
+            adapter.setClickListener(this);
+            rv.setAdapter(adapter);
+        }
     }
 
     public void onClick(View v) {
@@ -125,5 +168,10 @@ public class ShoppingListActivity extends AppCompatActivity implements LogToggle
                     "com.ics499.mixme.UI.LoginActivity");
             startActivity(intent);
         }
+    }
+
+    @Override
+    public void onItemClick(View view, int position) {
+
     }
 }

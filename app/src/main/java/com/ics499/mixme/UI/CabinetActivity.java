@@ -187,7 +187,12 @@ public class CabinetActivity extends AppCompatActivity implements LogToggle, Vie
             intent.setClassName("com.ics499.mixme",
                     "com.ics499.mixme.UI.CabinetActivity");
             startActivity(intent);
-
+        }
+        if (position > posOfText) {
+            intent.putExtra("drink", items.get(position));
+            intent.setClassName("com.ics499.mixme",
+                    "com.ics499.mixme.UI.DrinkRecipeActivity");
+            startActivity(intent);
         }
 
     }
