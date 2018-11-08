@@ -38,7 +38,6 @@ public class Controller {
         return controller;
     }
 
-
     public ArrayList<String> getIngredientList() {
         // to be replaced with catalog.getAllIngredints()
         ArrayList<String> ingredients = new ArrayList<>();
@@ -176,6 +175,10 @@ public class Controller {
 //    public void setCreationIngredient(String newIngredientName, int categoryID, double ingredientVolume, int units) {
 //        catalog.setCreationIngredient(newIngredientName, categoryID, ingredientVolume, units);
 //    }
+
+    public String getRandomDrink(){
+        return catalog.getRandomDrink();
+    }
 
     public void addCreation() {
         catalog.addCreation();
