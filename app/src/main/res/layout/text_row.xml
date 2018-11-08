@@ -5,16 +5,8 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/drinkBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:clickable="false"
-        android:focusable="false"
-        android:focusableInTouchMode="false"/>
-
     <TextView
-        android:id="@+id/percent"
+        android:id="@+id/canAlmostMake"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 

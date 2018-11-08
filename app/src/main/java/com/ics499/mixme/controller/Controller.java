@@ -1,9 +1,11 @@
 package com.ics499.mixme.controller;
 
 import android.content.Intent;
+import android.text.Editable;
 import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.ics499.mixme.model.Catalog;
 import com.ics499.mixme.model.Drink;
@@ -61,7 +63,7 @@ public class Controller {
 
 
         //return ingredients;
-        for (Ingredient i: catalog.getAllIngredients()){
+        for (Ingredient i : catalog.getAllIngredients()) {
             ingredients.add(i.getName());
         }
 
@@ -88,7 +90,7 @@ public class Controller {
 
         StringBuilder test = new StringBuilder();
         test.append("ingrdient Ids: ");
-        for (Integer i: usingIngredientIDs){
+        for (Integer i : usingIngredientIDs) {
             test.append(i.toString());
             test.append("\t");
         }
@@ -105,13 +107,124 @@ public class Controller {
 
     public void createDrink(String drinkName, ArrayList<String> ingredientNames, ArrayList<String> ingredientVolumes,
                             ArrayList<String> ingredientUnits, ArrayList<Integer> ingredientIDs,
-                            String directions, String glassType){
+                            String directions, String glassType, ArrayList<String> ingredientCats) {
 
         // pass along data to catalog, except convert sparseBooleanArray to ArrayList of Integers
         // not using sba yet
-        catalog.createDrink(drinkName, ingredientNames, ingredientVolumes, ingredientUnits, ingredientIDs, directions, glassType);
+        catalog.createDrink(drinkName, ingredientNames, ingredientVolumes, ingredientUnits,
+                ingredientIDs, directions, glassType, ingredientCats);
 
     }
 
 
+    public ArrayList<String> getCreationIngredNames() {
+        return catalog.getCreationIngredNames();
+    }
+
+    public ArrayList<String> getCreationVolumes() {
+        return catalog.getCreationVolumes();
+    }
+
+    public ArrayList<String> getCreationUnits() {
+        return catalog.getCreationUnits();
+    }
+
+    public void removeCreationIngredient(int position) {
+        catalog.removeCreationIngredient(position);
+    }
+
+    public void setCreationName(String creationName) {
+        catalog.setCreationName(creationName);
+    }
+
+    public void setCreationInstructions(String creationInstuctions) {
+        catalog.setCreationInstructions(creationInstuctions);
+    }
+
+    public void setCreationGlassType(String creationGlassType) {
+        catalog.setCreationGlassType(creationGlassType);
+    }
+
+    public String getCreationName() {
+        return catalog.getCreationName();
+    }
+
+    public String getCreationInstructions() {
+        return catalog.getCreationInstructions();
+    }
+
+    public String getCreationGlassType() {
+        return catalog.getCreationGlassType();
+    }
+
+    public String getIngredientName(int ingredientID) {
+        return catalog.getIngredientName(ingredientID);
+    }
+
+    public void setCreationIngredient(int ingredientId, double ingredientVolume, String units, String newIngredientName,
+                                      String category) {
+        Ingredient.Category cat;
+        if (ingredientId==-1) {
+             cat = Ingredient.Category.getCategory(category);
+        } else {
+            cat = null;
+        }
+        catalog.setCreationIngredient(ingredientId, ingredientVolume, units, newIngredientName, cat);
+
+    }
+
+//    public void setCreationIngredient(String newIngredientName, int categoryID, double ingredientVolume, int units) {
+//        catalog.setCreationIngredient(newIngredientName, categoryID, ingredientVolume, units);
+//    }
+
+    public void addCreation() {
+        catalog.addCreation();
+    }
+
+    public void setRecipe(String drinkName) {
+        catalog.setRecipe(drinkName);
+    }
+
+    public ArrayList<String> getRecipeIngredients() { return catalog.getRecipeIngredients();}
+
+    public ArrayList<String> getRecipeVolumes() { return catalog.getRecipeVolumes();}
+
+    public ArrayList<String> getRecipeUnits() { return catalog.getRecipeUnits();}
+
+    public String getRecipeInstructions() { return catalog.getRecipeInstructions();}
+
+    public String getRecipeGlassType() { return catalog.getRecipeGlassType();}
+
+    public ArrayList<Boolean> getHasIngredient(ArrayList<String> recipeIngredients) {
+        ArrayList<Boolean> hasIngredient = new ArrayList<>();
+
+        for (String recIng: getRecipeIngredients()){
+            for (String userIng: user.getMyIngredientNames()){
+                if (userIng.equals(recIng)){
+                    hasIngredient.add(true);
+                } else {
+                    hasIngredient.add(false);}
+            }
+        }
+
+        return hasIngredient;
+    }
+
+    public boolean isFavorite(String drinkName) {
+        return user.isFavorite(drinkName);
+    }
+
+    public int getIngredientID(String newIngName) {
+        return catalog.getIngredientID(newIngName);
+    }
+
+    public void addFavorite(String drinkName) {user.addFavorite(drinkName); }
+
+    public ArrayList<String> getUserFavorites() {
+        ArrayList<String> drinkNames = new ArrayList<>();
+        for(Drink d: user.getFaves()){
+            drinkNames.add(d.getName());
+        }
+        return  drinkNames;
+    }
 }

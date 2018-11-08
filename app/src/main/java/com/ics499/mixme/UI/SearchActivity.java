@@ -26,8 +26,8 @@ public class SearchActivity extends AppCompatActivity implements LogToggle,
     Button logBtn;
     String userName;
     SearchView searchView;
-    Button useIngredsBtn, clearBtn;
-    Button findDrinksBtn;
+    Button useIngredsBtn, clearBtn, findDrinksBtn;
+    Button createDrinkBtn, favesBtn, shoppingBtn, cabinetBtn, randomBtn;
 
     IngredientRecyclerViewAdapter adapter;
     Controller controller;
@@ -50,17 +50,31 @@ public class SearchActivity extends AppCompatActivity implements LogToggle,
 
             useIngredsBtn = (Button) findViewById(R.id.useIngredsBtn);
             useIngredsBtn.setOnClickListener(this);
+
+            createDrinkBtn = (Button) findViewById(R.id.createNVBtn);
+            createDrinkBtn.setOnClickListener(this);
+
+            favesBtn = (Button) findViewById(R.id.favesNVBtn);
+            favesBtn.setOnClickListener(this);
+
+            shoppingBtn = (Button) findViewById(R.id.shoppingNVBtn);
+            shoppingBtn.setOnClickListener(this);
+
+            cabinetBtn = (Button) findViewById(R.id.cabinetNVBtn);
+            cabinetBtn.setOnClickListener(this);
         }
         else {
             setContentView(R.layout.search_guest);
             logBtn = (Button) findViewById(R.id.logBtn);
+
         }
 
         logBtn.setOnClickListener(this);
 
         searchView = (SearchView) findViewById(R.id.searchView);
 
-
+        randomBtn = (Button) findViewById(R.id.randomNVBtn);
+        randomBtn.setOnClickListener(this);
 
         clearBtn = (Button) findViewById(R.id.clearBtn);
         clearBtn.setOnClickListener(this);
@@ -96,6 +110,8 @@ public class SearchActivity extends AppCompatActivity implements LogToggle,
     @Override
     public void onClick(View v) {
 
+        Intent intent = new Intent();
+
         switch (v.getId()){
 
             case R.id.logBtn:
@@ -111,16 +127,43 @@ public class SearchActivity extends AppCompatActivity implements LogToggle,
                 controller.searchDrinks(sba, makableNames,
                         nearMakableNames, nearMakableMatch);
 
-
-
-                Intent intent = new Intent();
-                //makableNames.add("gegw");
                 intent.putStringArrayListExtra("makableNames", makableNames);
                 intent.putStringArrayListExtra("nearMakableNames", nearMakableNames);
                 intent.putStringArrayListExtra("nearMakableMatch", nearMakableMatch);
                 intent.setClassName("com.ics499.mixme",
                         "com.ics499.mixme.UI.DrinksFoundActivity");
                 startActivity(intent);
+                break;
+
+            case R.id.createNVBtn:
+                intent.setClassName("com.ics499.mixme",
+                        "com.ics499.mixme.UI.CreateDrinkActivity");
+                startActivity(intent);
+                break;
+
+            case R.id.favesNVBtn:
+                intent.setClassName("com.ics499.mixme",
+                        "com.ics499.mixme.UI.FavoritesActivity");
+                startActivity(intent);
+                break;
+
+            case R.id.shoppingNVBtn:
+                intent.setClassName("com.ics499.mixme",
+                        "com.ics499.mixme.UI.ShoppingListActivity");
+                startActivity(intent);
+                break;
+
+            case R.id.cabinetNVBtn:
+                intent.setClassName("com.ics499.mixme",
+                        "com.ics499.mixme.UI.CabinetActivity");
+                startActivity(intent);
+                break;
+
+            case R.id.randomNVBtn:
+                intent.setClassName("com.ics499.mixme",
+                        "com.ics499.mixme.UI.RandomActivity");
+                startActivity(intent);
+                break;
         }
     }
 
