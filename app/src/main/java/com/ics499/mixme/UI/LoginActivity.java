@@ -166,7 +166,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         // Check for a valid password, if the user entered one.
         if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
-            mPasswordView.setError(getString(R.string.error_invalid_password));
+            mPasswordView.setError(getString(R.string.error_invalid_password_length_short));
+            focusView = mPasswordView;
+            cancel = true;
+        } else if(!isPasswordValidLength(password)){
+            mPasswordView.setError(getString(R.string.error_invalid_password_length_long));
             focusView = mPasswordView;
             cancel = true;
         }
@@ -202,7 +206,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     private boolean isPasswordValid(String password) {
         //TODO: Replace this with your own logic
-        return password.length() > 4;
+        return password.length() > 5;
+    }
+
+    private boolean isPasswordValidLength(String password){
+        return password.length() < 20;
     }
 
     /**
@@ -328,11 +336,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     Intent intent = new Intent();
                     // Account exists, start intent to CabinetActivity
                     if (pieces[1].equals(mPassword)) {
-                        SharedPrefsManager.setUserName(LoginActivity.this, mEmail);
-                        intent.setClassName("com.ics499.mixme",
-                                "com.ics499.mixme.UI.CabinetActivity");
-                        startActivity(intent);
-                        return true;
+                            SharedPrefsManager.setUserName(LoginActivity.this, mEmail);
+                            intent.setClassName("com.ics499.mixme",
+                                    "com.ics499.mixme.UI.CabinetActivity");
+                            startActivity(intent);
+                            return true;
+                        
                     } else {
                         return false;
                     }
